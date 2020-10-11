@@ -26,5 +26,3 @@ typedef int ElemType; //数据元素类型定义
 
 #endif //INC_1_SEQUENCE_STRUCTURE_DEF_H
 
-
-//test
