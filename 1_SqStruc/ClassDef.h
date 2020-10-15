@@ -234,7 +234,7 @@ public:
 
 class MultiSq{
 public:
-		typedef struct{  //多线性表的管理表定义
+		typedef struct{  //线性表集合的管理表定义
 
 			typedef struct {
 //              每个线性表元素包含一个线性表对象和线性表名称
@@ -252,15 +252,15 @@ public:
 		MultiSq(){//构造函数自动初始化
 			InitMultList();
 		}
-		LISTS Get(){//获取该多线性表
+		LISTS Get(){//获取该线性表集合
 			return SqLists;
 		}
-		//func1：初始化多线性表
+		//func1：初始化线性表集合
 		//函数原型：status InitMultList()
-		//功能说明：如果多线性表不存在，操作结果是构造一个空的多线性表，返回OK，否则返回INFEASIBLE
+		//功能说明：如果线性表集合不存在，操作结果是构造一个空的线性表集合，返回OK，否则返回INFEASIBLE
 		// （注意声明对象时已通过构造函数初始化）
 		status InitMultList(){
-			if (SqLists.elem!=nullptr)//多线性表已存在，不能进行初始化
+			if (SqLists.elem!=nullptr)//线性表集合已存在，不能进行初始化
 				return INFEASIBLE;
 			SqLists.elem=(LISTS::SingleL)malloc(sizeof(LISTS::SingleL)*INIT_SIZE);
 			if (SqLists.elem==nullptr)
@@ -332,9 +332,9 @@ public:
 		}
 			return 0;//遍历后未找到
 		}
-//      func5：存储多线性表
+//      func5：存储线性表集合
 //      函数原型：status SaveLists(const string& filepath)
-//      功能说明：保存多线性表的所有数据到filename，成功返回OK，否则返回失败
+//      功能说明：保存线性表集合的所有数据到filename，成功返回OK，否则返回失败
 //      数据存储方式：先写入线性表个数，然后每个线性表依次写入名称，长度，元素，以0表示结束
 		status SaveLists(const string& filepath) const{//filepath：文件保存路径
 			ofstream outfile;

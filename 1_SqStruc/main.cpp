@@ -205,7 +205,7 @@ int ManageSingleList(SeqStc &sqL,const string& listName) {
                 cin>>i;
                 outcome=sqL.ListInsert(i,e);
                 if (outcome==OK){
-                    cout<<"成功,元素 "<<e<<" 已插入！"<<endl;
+                    cout<<"成功,元素 "<<e<<" 已插入位置 "<<i<<" ！"<<endl;
                 } else  if (outcome==ERROR){
                     cout<<"错误，位置 "<<i<<" 不合法！"<<endl;
                 } else  if(outcome==INFEASIBLE){
@@ -243,7 +243,7 @@ int ManageSingleList(SeqStc &sqL,const string& listName) {
                 else if (outcome==INFEASIBLE)
                     cout<<"不可行，线性表不存在！"<<endl;
                 else{//ERROR
-                    cout<<"该线性表是空表";
+                    cout<<"该线性表是空表"<<endl;
                 }
                 cout<<"键入任意键以继续"<<endl;
                 getchar();getchar();
@@ -271,15 +271,15 @@ int main() {
     while (opt){
         system("clear");
         cout<<endl
-            <<"     欢迎使用整型多线性表管理系统！"<<endl
-            <<"     多线性表操作菜单"<<endl
+            <<"     欢迎使用整型线性表集合管理系统！"<<endl
+            <<"     线性表集合操作菜单"<<endl
             <<"_______________________________________________"<<endl
-            <<"\t1. 初始化多线性表"<<endl
+            <<"\t1. 初始化线性表集合"<<endl
             <<"\t2. 增加一个线性表"<<endl
             <<"\t3. 移除一个线性表"<<endl
             <<"\t4. 查找线性表"<<endl
-            <<"\t5. 保存多线性表文件"<<endl
-            <<"\t6. 读取多线性表文件"<<endl
+            <<"\t5. 保存线性表集合文件"<<endl
+            <<"\t6. 读取线性表集合文件"<<endl
             <<"\t7. 操作指定线性表"<<endl
             <<"\t8. 查看线性表"<<endl
             <<"\t0. 退出系统"<<endl
@@ -297,12 +297,12 @@ int main() {
         strStream>>opt;//将输入的字符串转化为数字
         int outcome;
         switch (opt) {
-            case 1:{//初始化多线性表
+            case 1:{//初始化线性表集合
                 outcome=Sqs.InitMultList();
                 if (outcome == OK)
-                    cout<<"成功，多线性表已初始化"<<endl;
+                    cout<<"成功，线性表集合已初始化"<<endl;
                 else if (outcome == INFEASIBLE)
-                    cout<<"不可行，多线性表已由构造函数初始化"<<endl;
+                    cout<<"不可行，线性表集合已由构造函数初始化"<<endl;
                 cout<<"键入任意键以继续"<<endl;
                 getchar();getchar();
                 break;
@@ -355,7 +355,7 @@ int main() {
                 getchar();getchar();
                 break;
             }
-            case 5:{//保存多线性表
+            case 5:{//保存线性表集合
                 string  filename="./data/";
                 outcome=Sqs.SaveLists(filename);
                 if (outcome == OVERFLOWED){
@@ -367,15 +367,15 @@ int main() {
                 getchar();getchar();
                 break;
             }
-            case 6:{//读取多线性表
+            case 6:{//读取线性表集合
                 string filename="./data/";
                 outcome= Sqs.LoadLists(filename);
                 if (outcome==OK)
-                    cout<<"多线性表数据读取成功！"<<endl;
+                    cout<<"线性表集合数据读取成功！"<<endl;
                 else if(outcome==INFEASIBLE)
-                    cout<<"不可行，多线性表已存在！"<<endl;
+                    cout<<"不可行，线性表集合已存在！"<<endl;
                 else{//OVERFLOWED
-                    cout<<"文件打开失败！";
+                    cout<<"文件打开失败！"<<endl;
                 }
                 cout<<"键入任意键以继续"<<endl;
                 getchar();getchar();
