@@ -100,14 +100,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug" && $(CMAKE_COMMAND) -E cmake_progress_start "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug/CMakeFiles" "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug/1_SqStruc/CMakeFiles/progress.marks"
-	cd "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 1_SqStruc/all
+	cd "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug" && $(CMAKE_COMMAND) -E cmake_progress_start "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug/CMakeFiles" "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug/2_LinkStruc/CMakeFiles/progress.marks"
+	cd "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 2_LinkStruc/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 1_SqStruc/clean
+	cd "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 2_LinkStruc/clean
 .PHONY : clean
 
 # The main clean target
@@ -117,12 +117,12 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 1_SqStruc/preinstall
+	cd "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 2_LinkStruc/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 1_SqStruc/preinstall
+	cd "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 2_LinkStruc/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
@@ -131,19 +131,19 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-1_SqStruc/CMakeFiles/1_SqStruc.dir/rule:
-	cd "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 1_SqStruc/CMakeFiles/1_SqStruc.dir/rule
-.PHONY : 1_SqStruc/CMakeFiles/1_SqStruc.dir/rule
+2_LinkStruc/CMakeFiles/2_LinkStruc.dir/rule:
+	cd "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 2_LinkStruc/CMakeFiles/2_LinkStruc.dir/rule
+.PHONY : 2_LinkStruc/CMakeFiles/2_LinkStruc.dir/rule
 
 # Convenience name for target.
-1_SqStruc: 1_SqStruc/CMakeFiles/1_SqStruc.dir/rule
+2_LinkStruc: 2_LinkStruc/CMakeFiles/2_LinkStruc.dir/rule
 
-.PHONY : 1_SqStruc
+.PHONY : 2_LinkStruc
 
 # fast build rule for target.
-1_SqStruc/fast:
-	cd "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug" && $(MAKE) $(MAKESILENT) -f 1_SqStruc/CMakeFiles/1_SqStruc.dir/build.make 1_SqStruc/CMakeFiles/1_SqStruc.dir/build
-.PHONY : 1_SqStruc/fast
+2_LinkStruc/fast:
+	cd "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug" && $(MAKE) $(MAKESILENT) -f 2_LinkStruc/CMakeFiles/2_LinkStruc.dir/build.make 2_LinkStruc/CMakeFiles/2_LinkStruc.dir/build
+.PHONY : 2_LinkStruc/fast
 
 main.o: main.cpp.o
 
@@ -151,7 +151,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	cd "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug" && $(MAKE) $(MAKESILENT) -f 1_SqStruc/CMakeFiles/1_SqStruc.dir/build.make 1_SqStruc/CMakeFiles/1_SqStruc.dir/main.cpp.o
+	cd "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug" && $(MAKE) $(MAKESILENT) -f 2_LinkStruc/CMakeFiles/2_LinkStruc.dir/build.make 2_LinkStruc/CMakeFiles/2_LinkStruc.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -160,7 +160,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	cd "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug" && $(MAKE) $(MAKESILENT) -f 1_SqStruc/CMakeFiles/1_SqStruc.dir/build.make 1_SqStruc/CMakeFiles/1_SqStruc.dir/main.cpp.i
+	cd "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug" && $(MAKE) $(MAKESILENT) -f 2_LinkStruc/CMakeFiles/2_LinkStruc.dir/build.make 2_LinkStruc/CMakeFiles/2_LinkStruc.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -169,7 +169,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	cd "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug" && $(MAKE) $(MAKESILENT) -f 1_SqStruc/CMakeFiles/1_SqStruc.dir/build.make 1_SqStruc/CMakeFiles/1_SqStruc.dir/main.cpp.s
+	cd "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug" && $(MAKE) $(MAKESILENT) -f 2_LinkStruc/CMakeFiles/2_LinkStruc.dir/build.make 2_LinkStruc/CMakeFiles/2_LinkStruc.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 # Help Target
@@ -180,7 +180,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... 1_SqStruc"
+	@echo "... 2_LinkStruc"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

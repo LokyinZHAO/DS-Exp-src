@@ -3,5 +3,4 @@ project(EXP_src)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_subdirectory(1_SqStruc)
-add_subdirectory(2_LinkStruc)
+add_executable(2_LinkStruc main.cpp def.h stu.h)

@@ -5,7 +5,7 @@
 		<Option title="1_SqStructure"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;CMake Files\1_SqStruc\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\1_SqStruc\;CMake Files\2_LinkStruc\;"/>
 		<Build>
 			<Target title="all">
 				<Option working_dir="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug/1_SqStruc"/>
@@ -17,8 +17,8 @@
 					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP\ src/cmake-build-debug/1_SqStruc/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="SqStruc">
-				<Option output="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug/1_SqStruc/SqStruc" prefix_auto="0" extension_auto="0"/>
+			<Target title="1_SqStruc">
+				<Option output="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug/1_SqStruc/1_SqStruc" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug/1_SqStruc"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -32,14 +32,14 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP\ src/cmake-build-debug/1_SqStruc/Makefile&quot;  VERBOSE=1 SqStruc"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP\ src/cmake-build-debug/1_SqStruc/Makefile&quot;  VERBOSE=1 1_SqStruc"/>
 					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP\ src/cmake-build-debug/1_SqStruc/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j8 -f &quot;/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP\ src/cmake-build-debug/1_SqStruc/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP\ src/cmake-build-debug/1_SqStruc/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="SqStruc/fast">
-				<Option output="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug/1_SqStruc/SqStruc" prefix_auto="0" extension_auto="0"/>
+			<Target title="1_SqStruc/fast">
+				<Option output="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug/1_SqStruc/1_SqStruc" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug/1_SqStruc"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -53,7 +53,7 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP\ src/cmake-build-debug/1_SqStruc/Makefile&quot;  VERBOSE=1 SqStruc/fast"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP\ src/cmake-build-debug/1_SqStruc/Makefile&quot;  VERBOSE=1 1_SqStruc/fast"/>
 					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP\ src/cmake-build-debug/1_SqStruc/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j8 -f &quot;/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP\ src/cmake-build-debug/1_SqStruc/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP\ src/cmake-build-debug/1_SqStruc/Makefile&quot;  VERBOSE=1 clean"/>
@@ -61,19 +61,22 @@
 			</Target>
 		</Build>
 		<Unit filename="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/1_SqStruc/ClassDef.h">
-			<Option target="SqStruc"/>
+			<Option target="1_SqStruc"/>
 		</Unit>
 		<Unit filename="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/1_SqStruc/def.h">
-			<Option target="SqStruc"/>
+			<Option target="1_SqStruc"/>
 		</Unit>
 		<Unit filename="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/1_SqStruc/main.cpp">
-			<Option target="SqStruc"/>
+			<Option target="1_SqStruc"/>
 		</Unit>
 		<Unit filename="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 		<Unit filename="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/1_SqStruc/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\1_SqStruc\"/>
+		</Unit>
+		<Unit filename="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/2_LinkStruc/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\2_LinkStruc\"/>
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>

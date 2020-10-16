@@ -131,17 +131,30 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named SqStruc
+# Target rules for targets named 1_SqStruc
 
 # Build rule for target.
-SqStruc: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SqStruc
-.PHONY : SqStruc
+1_SqStruc: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 1_SqStruc
+.PHONY : 1_SqStruc
 
 # fast build rule for target.
-SqStruc/fast:
-	$(MAKE) $(MAKESILENT) -f 1_SqStruc/CMakeFiles/SqStruc.dir/build.make 1_SqStruc/CMakeFiles/SqStruc.dir/build
-.PHONY : SqStruc/fast
+1_SqStruc/fast:
+	$(MAKE) $(MAKESILENT) -f 1_SqStruc/CMakeFiles/1_SqStruc.dir/build.make 1_SqStruc/CMakeFiles/1_SqStruc.dir/build
+.PHONY : 1_SqStruc/fast
+
+#=============================================================================
+# Target rules for targets named 2_LinkStruc
+
+# Build rule for target.
+2_LinkStruc: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 2_LinkStruc
+.PHONY : 2_LinkStruc
+
+# fast build rule for target.
+2_LinkStruc/fast:
+	$(MAKE) $(MAKESILENT) -f 2_LinkStruc/CMakeFiles/2_LinkStruc.dir/build.make 2_LinkStruc/CMakeFiles/2_LinkStruc.dir/build
+.PHONY : 2_LinkStruc/fast
 
 # Help Target
 help:
@@ -151,7 +164,8 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... SqStruc"
+	@echo "... 1_SqStruc"
+	@echo "... 2_LinkStruc"
 .PHONY : help
 
 
