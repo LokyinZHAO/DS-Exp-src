@@ -132,8 +132,8 @@ public:
         LinkList q=head ,p=head ->next;
         if (q->next== nullptr)
             return ERROR;//空表，直接返回为"未找到元素"，不再查找
-        if (p->next== nullptr)
-            return UNEXPECTED;//只有一个元素,无前驱
+        if (p->data==e)
+            return UNEXPECTED;//第一个元素无前驱
         q=q->next;
         p=p->next;
         while (p!= nullptr){
@@ -157,8 +157,6 @@ public:
             return ERROR;//空表，直接返回为"未找到元素"，不再查找
         p=p->next;
         q=q->next;
-        if (q== nullptr)
-            return UNEXPECTED;//只有一个元素,无后继
         while (q!= nullptr){
             if (p->data==e){
                 next=q->data;
@@ -167,6 +165,8 @@ public:
             p=p->next;
             q=q->next;
         }
+        if (p->data==e)
+            return UNEXPECTED;//最后一个元素无后继
         return ERROR;//未找到
     }
 //func10:插入元素
@@ -177,7 +177,7 @@ public:
             return INFEASIBLE;
         LinkList p=head;
         if (i<1||i>head->data+1) return ERROR;//插入位置不合法
-        for (int j = 1; j <= head->data; ++j) {
+        for (int j = 1; j <= head->data+1; ++j) {
             if (j==i){
                 LinkList next=p->next;
                 p->next=(LinkList)malloc(sizeof(LNode));
@@ -210,19 +210,19 @@ public:
         }
     }
 //func12:遍历线性表
-//函数原型：status ListTraverse(const string& name)
-//功能说明：若线性表L不存在，返回INFEASIBLE；否则将元素依次写入线性表H中，并返回OK。
-     status ListTraverse(ElemType* traverse){
+//函数原型：status ListTraverse()
+//功能说明：若线性表L不存在，返回INFEASIBLE；否则将元素依次输出，并返回OK。
+     status ListTraverse(){
         if (head== nullptr)//线性表不存在
             return INFEASIBLE;
         if (head->data==0)
             return ERROR;//空表
         LinkList p=head->next;
-        traverse=(ElemType*)malloc(sizeof(ElemType)*head->data);
-        for (int i = 0; i < head->data; ++i) {//TODO:修改了输出方式，在调用者处输出
-            traverse[i]=p->data;
+        for (int i = 0; i < head->data; ++i) {
+            cout<<p->data<<" ";
             p=p->next;
         }
+        cout<<endl;
         return OK;//成功
     }
 //func13:存储文件
@@ -328,7 +328,7 @@ public:
             int r;
             cin>>r;
             while (r){
-                SqLists.elem[SqLists.sqL_quantity].L.ListInsert(SqLists.elem[SqLists.sqL_quantity].L.GetHead()->data,r);
+                SqLists.elem[SqLists.sqL_quantity].L.ListInsert(SqLists.elem[SqLists.sqL_quantity].L.GetHead()->data+1,r);
                 cin>>r;
             }
             SqLists.sqL_quantity++;
@@ -384,19 +384,8 @@ public:
         }
         outfile.close();
         for (int i = 0; i < SqLists.sqL_quantity; ++i) {//逐个线性表创建文件
-            ofstream sglOutFile;//
-            sglOutFile.open(filepath+SqLists.elem[i].name+".txt",ios::out|ios::trunc);//以表名命名文件
-            if (sglOutFile.fail())
-                return OVERFLOWED;
-            if (SqLists.elem[i].L.GetHead()->next== nullptr)
-                return INFEASIBLE;
-            sglOutFile<<SqLists.elem[i].L.GetHead()->data<<endl;//首先写入表长
-            for (int j = 0; j < SqLists.elem[i].L.GetHead()->data; ++j) {
-                sglOutFile<<SqLists.elem[i].L.Get().elem[j]<<endl;//写入元素数据
-            }
-            sglOutFile.close();
+            SqLists.elem[i].L.SaveList(filepath,SqLists.elem[i].name);
         }
-
         return OK;
     }
 
@@ -427,19 +416,8 @@ public:
         }
         infile.close();
         for (int i = 0; i < SqLists.sqL_quantity; ++i) {//依次按照文件名读取
-            ifstream sglInFile;
-            sglInFile.open(filepath+SqLists.elem[i].name+".txt",ios::in);
-            if (sglInFile.fail()){  //文件打开失败
-                return OVERFLOWED;}
-            int len;
-            sglInFile>>len;
-            SqLists.elem[i].L.InitList();
-            for (int j = 0; j <len ; ++j) {//写入数据
-                ElemType e;
-                sglInFile>>e;
-                SqLists.elem[i].L.ListInsert(j+1,e);
-            }
-            sglInFile.close();
+            SqLists.elem[i].L.InitList();//TODO:检查这里到底要不要初始化
+            SqLists.elem[i].L.LoadList(filepath,SqLists.elem[i].name);
         }
         return OK;
     }

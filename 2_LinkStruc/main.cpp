@@ -141,7 +141,7 @@ int ManageSingleList(LinkStru &LinkL, const string& listName) {
                 ElemType e;
                 cout<<"请输入要查找的元素："<<endl;
                 cin>>e;
-                outcome=LinkL.LocateElem(e, i);
+                outcome=LinkL.LocateElem(e);
                 if (outcome==INFEASIBLE)
                     cout<<"不可行，线性表为空！"<<endl;
                 else if (outcome==ERROR)
@@ -235,7 +235,7 @@ int ManageSingleList(LinkStru &LinkL, const string& listName) {
             }//end of case 11:删除元素
 
             case 12:{//遍历线性表
-                outcome=LinkL.ListTraverse(listName);
+                outcome=LinkL.ListTraverse();//TODO:应该返回一个数组在之后输出
                 if (outcome==OK)
                     cout<<"线性表遍历完成！"<<endl;
                 else if (outcome==INFEASIBLE)
@@ -409,14 +409,16 @@ int main() {
                     cout<<"存在的线性表："<<endl;
                     for (int i = 0; i < Sqs.Get().sqL_quantity; ++i) {
                         cout<<i+1<<". "<<Sqs.Get().elem[i].name<<"\t";
-                        if (Sqs.Get().elem[i].L.Get().length!=0){
+                        if (Sqs.Get().elem[i].L.GetHead()->data!=0){
                             cout<<": ";
                             int j;
-                            for (j = 0; j < Sqs.Get().elem[i].L.Get().length&&j<5; ++j) {
-                                cout<<" "<<Sqs.Get().elem[i].L.Get().elem[j];
+                            for (j = 0; j < Sqs.Get().elem[i].L.GetHead()->data&&j<5; ++j) {
+                                int e;
+                                Sqs.Get().elem[i].L.GetElem(j,e);
+                                cout<<" "<<e;
                             }
-                            if (j==5&&(Sqs.Get().elem[i].L.Get().length!=5))
-                                cout<<" ... ("<<Sqs.Get().elem[i].L.Get().length<<")";//大于五个元素的不再显示，并输出省略号
+                            if (j==5&&(Sqs.Get().elem[i].L.GetHead()->data!=5))
+                                cout<<" ... ("<<Sqs.Get().elem[i].L.GetHead()->data<<")";//大于五个元素的不再显示，并输出省略号
                         }
                         cout<<endl;
                     }
