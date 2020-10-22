@@ -3,4 +3,4 @@ project(EXP_src)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(2_LinkStruc main.cpp def.h stu.h)
+add_executable(2_LinkStruc main.cpp def.h stu.h ClassDef.h)

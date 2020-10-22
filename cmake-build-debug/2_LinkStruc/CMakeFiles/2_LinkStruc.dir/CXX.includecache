@@ -6,6 +6,12 @@
 
 #IncludeRegexTransform: 
 
+/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/2_LinkStruc/ClassDef.h
+fstream
+-
+def.h
+/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/2_LinkStruc/def.h
+
 /Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/2_LinkStruc/def.h
 stdio.h
 /Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/2_LinkStruc/stdio.h
@@ -13,16 +19,12 @@ stdlib.h
 /Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/2_LinkStruc/stdlib.h
 
 /Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/2_LinkStruc/main.cpp
-def.h
-/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/2_LinkStruc/def.h
-stu.h
-/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/2_LinkStruc/stu.h
-string.h
-/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/2_LinkStruc/string.h
-
-/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/2_LinkStruc/stu.h
 iostream
 -
-fstream
+sstream
 -
+def.h
+/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/2_LinkStruc/def.h
+ClassDef.h
+/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/2_LinkStruc/ClassDef.h
 
