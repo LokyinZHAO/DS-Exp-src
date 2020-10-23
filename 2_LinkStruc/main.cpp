@@ -264,7 +264,7 @@ int ManageSingleList(LinkStru &LinkL, const string& listName) {
 
 int main() {
     int opt=1;
-    LinkSet Sqs;
+    LinkSet linkSet;
     string  input;
     while (opt){
         system("clear");
@@ -296,7 +296,7 @@ int main() {
         int outcome;
         switch (opt) {
             case 1:{//初始化线性表集合
-                outcome=Sqs.InitMultList();
+                outcome=linkSet.InitListSet();
                 if (outcome == OK)
                     cout<<"成功，线性表集合已初始化"<<endl;
                 else if (outcome == INFEASIBLE)
@@ -310,14 +310,14 @@ int main() {
                 string name;
                 cout<<"请输入新线性表名称："<<endl;
                 cin>>name;
-                int checkRecur=Sqs.LocateList(name);
+                int checkRecur=linkSet.LocateList(name);
                 if (checkRecur!=0){//检查是否有重名的线性表
                     cout<<"错误，名为 "<<name<<" 的线性表已存在！"<<endl;
                     cout<<"键入任意键以继续"<<endl;
                     getchar();getchar();
                     break;
                 }
-                outcome=Sqs.AddList(name);
+                outcome=linkSet.AddList(name);
                 if (outcome == OVERFLOWED)
                     cout<<"分配空间失败，线性表未创建！"<<endl;
                 else if (outcome==OK)
@@ -330,7 +330,7 @@ int main() {
                 string name;
                 cout<<"请输入要移除的线性表名称："<<endl;
                 cin>>name;
-                outcome=Sqs.RemoveList(name);
+                outcome=linkSet.RemoveList(name);
                 if (outcome==OK)
                     cout<<"成功，名为 "<<name<<" 的线性表被移除！"<<endl;
                 else if (outcome==ERROR)
@@ -343,7 +343,7 @@ int main() {
                 string name;
                 cout<<"请输入要查找的线性表名称："<<endl;
                 cin>>name;
-                int location=Sqs.LocateList(name);
+                int location=linkSet.LocateList(name);
                 if (location){
                     cout<<"成功，找到名为 "<<name<<" 的线性表在 "<<location<<" 号位！"<<endl;
                 } else{
@@ -355,7 +355,7 @@ int main() {
             }
             case 5:{//保存线性表集合
                 string  filename="./data/";
-                outcome=Sqs.SaveLists(filename);
+                outcome=linkSet.SaveLists(filename);
                 if (outcome == OVERFLOWED){
                     cout<<"打开文件失败！"<<endl;
                 } else  if (outcome==OK){
@@ -367,7 +367,7 @@ int main() {
             }
             case 6:{//读取线性表集合
                 string filename="./data/";
-                outcome= Sqs.LoadLists(filename);
+                outcome= linkSet.LoadLists(filename);
                 if (outcome==OK)
                     cout<<"线性表集合数据读取成功！"<<endl;
                 else if(outcome==INFEASIBLE)
@@ -383,7 +383,7 @@ int main() {
                 int idx;
                 cout<<"请输入要操作的线性表序号："<<endl;
                 cin>>idx;
-                if (idx<1||idx>Sqs.Get().sqL_quantity){
+                if (idx<1|| idx > linkSet.GetQuantity()){
                     cout<<"错误，序号为 "<<idx<<" 的线性表不存在"<<endl;
                     cout<<"键入任意键以继续"<<endl;
                     getchar();getchar();
@@ -391,10 +391,10 @@ int main() {
                 }
                 else {
                     idx--;
-                    int sta=ManageSingleList(Sqs.Get().elem[idx].L, Sqs.Get().elem[idx].name);
-                    if (sta==1){//执行了线性表销毁
-                        string  name=Sqs.Get().elem[idx].name;//记录被销毁的线性表名称
-                        Sqs.RemoveList(name);
+                    int stat=ManageSingleList(linkSet.GetNode(idx)->linkStru, linkSet.GetNode(idx)->name);
+                    if (stat==1){//执行了线性表销毁
+                        string  name=linkSet.GetNode(idx)->name;//记录被销毁的线性表名称
+                        linkSet.RemoveList(name);
                         cout<<"线性表 "<<name<<" 已被销毁并移除，即将返回上级菜单"<<endl;
                         cout<<"键入任意键以继续"<<endl;
                         getchar();getchar();
@@ -403,22 +403,22 @@ int main() {
                 break;
             }
             case 8:{//查看线性表
-                if (Sqs.Get().sqL_quantity==0){
+                if (linkSet.GetQuantity() == 0){
                     cout<<"不存在任何线性表！"<<endl;
                 } else{
                     cout<<"存在的线性表："<<endl;
-                    for (int i = 0; i < Sqs.Get().sqL_quantity; ++i) {
-                        cout<<i+1<<". "<<Sqs.Get().elem[i].name<<"\t";
-                        if (Sqs.Get().elem[i].L.GetHead()->data!=0){
+                    for (int i = 0; i < linkSet.GetQuantity(); ++i) {
+                        cout <<i+1 << ". " << linkSet.GetNode(i)->name << "\t";
+                        if (linkSet.GetNode(i)->linkStru.GetHead()->data != 0){
                             cout<<": ";
                             int j;
-                            for (j = 0; j < Sqs.Get().elem[i].L.GetHead()->data&&j<5; ++j) {
+                            for (j = 0; j < linkSet.GetNode(i)->linkStru.GetHead()->data && j < 5; ++j) {
                                 int e;
-                                Sqs.Get().elem[i].L.GetElem(j+1,e);
+                                linkSet.GetNode(i)->linkStru.GetElem(j + 1, e);
                                 cout<<" "<<e;
                             }
-                            if (j==5&&(Sqs.Get().elem[i].L.GetHead()->data!=5))
-                                cout<<" ... ("<<Sqs.Get().elem[i].L.GetHead()->data<<")";//大于五个元素的不再显示，并输出省略号
+                            if (j==5&&(linkSet.GetNode(i)->linkStru.GetHead()->data != 5))
+                                cout << " ... (" << linkSet.GetNode(i)->linkStru.GetHead()->data << ")";//大于五个元素的不再显示，并输出省略号
                         }
                         cout<<endl;
                     }

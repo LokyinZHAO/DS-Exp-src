@@ -21,6 +21,9 @@ private:
     LinkStru(){
         InitList();//构造函数初始化
     }
+    ~LinkStru(){
+        DestroyList();//解构
+    }
 public:
     LinkList GetHead(){//返回头指针
         return head;
@@ -260,6 +263,7 @@ public:
     }
 };
 
+
 class LinkSet{
 public:
     typedef struct{  //线性表集合的管理表定义
@@ -273,28 +277,42 @@ public:
         int sqL_size;
     }LISTS;
 
+    typedef struct LinkNode{
+        string  name;
+        LinkStru linkStru;
+        struct LinkNode* next;
+    }*sglLinkNode_ptr,sglLinkNode;//每个节点代表一个线性表
 private:
-    LISTS SqLists;
+    sglLinkNode_ptr head;//头节点
+    int quantity;//线性表个数
 public:
     LinkSet(){//构造函数自动初始化
-        InitMultList();
+        InitListSet();
     }
-    LISTS Get(){//获取该线性表集合
-        return SqLists;
+
+    sglLinkNode_ptr GetNode(int i){//获取该线性表的第i个节点的指针
+        sglLinkNode_ptr ptr=head->next;
+        for (int j = 0; j < quantity; ++j) {
+            ptr=ptr->next;
+        }
+        return ptr;//TODO:返回head不便于随机访问；最好由参数，表示第几个
+    }
+
+    int GetQuantity(){//返回个数
+        return quantity;
     }
     //func1：初始化线性表集合
-    //函数原型：status InitMultList()
+    //函数原型：status InitListSet()
     //功能说明：如果线性表集合不存在，操作结果是构造一个空的线性表集合，返回OK，否则返回INFEASIBLE
     // （注意声明对象时已通过构造函数初始化）
-    status InitMultList(){
-        if (SqLists.elem!=nullptr)//线性表集合已存在，不能进行初始化
+    status InitListSet(){
+        if (head!=nullptr)//线性表集合已存在，不能进行初始化
             return INFEASIBLE;
-        SqLists.elem=(LISTS::SingleL)malloc(sizeof(LISTS::SingleL)*INIT_SIZE);
-        if (SqLists.elem==nullptr)
+        head=(sglLinkNode_ptr)malloc(sizeof(sglLinkNode));
+        if (head==nullptr)
             return OVERFLOWED;//初始化失败
         else {//成功初始化
-            SqLists.sqL_quantity=0;
-            SqLists.sqL_size=INIT_SIZE;
+            quantity=0;
             return OK;
         }
     }
@@ -303,7 +321,8 @@ public:
 //      函数原型：status AddList(const string& listName)
 //      功能说明：Lists是一个以顺序表形式管理的线性表的集合，在集合中增加一个新的空线性表。
     status AddList(const string& listName) {
-        if (SqLists.sqL_quantity==SqLists.sqL_size){//即将溢出，扩容
+        //TODO：Delete
+        /*if (quantity==SqLists.sqL_size){//即将溢出，扩容
             LISTS::SingleL newbase=(LISTS::SingleL)realloc(SqLists.elem,sizeof(LISTS::SingleL)*(SqLists.sqL_size+INCREMENT))
             ;
             if (newbase==nullptr)
@@ -314,19 +333,39 @@ public:
             }
         }
         //之后对新增线性表初始化
-        int outcome=SqLists.elem[SqLists.sqL_quantity].L.InitList();
+        int outcome=SqLists.elem[quantity].L.InitList();
         if (outcome == OVERFLOWED)
             return OVERFLOWED;//分配失败
         else if (outcome==OK){
-            SqLists.elem[SqLists.sqL_quantity].name=listName;
+            SqLists.elem[quantity].name=listName;
             cout<<"请输入整型线性表数据，空格隔开，以0结尾:"<<endl;//读入数据
             int r;
             cin>>r;
             while (r){
-                SqLists.elem[SqLists.sqL_quantity].L.ListInsert(SqLists.elem[SqLists.sqL_quantity].L.GetHead()->data+1,r);
+                SqLists.elem[quantity].L.ListInsert(SqLists.elem[quantity].L.GetHead()->data+1,r);
                 cin>>r;
             }
-            SqLists.sqL_quantity++;
+            quantity++;
+            return OK;//成功添加*/
+        sglLinkNode_ptr newList=(sglLinkNode_ptr)malloc(sizeof(sglLinkNode));
+        int outcome=newList->linkStru.InitList();//给新线性表分配空间
+        if (outcome==OVERFLOWED) return OVERFLOWED;//分配失败
+        else {//TODO：如果不返回INF，可以去掉if
+            newList->name=listName;
+            cout<<"请输入整型线性表数据，空格隔开，以0结尾:"<<endl;//读入数据
+            int r;
+            cin>>r;
+            while (r){
+                newList->linkStru.ListInsert(newList->linkStru.GetHead()->data+1,r);
+                cin>>r;
+            }
+            newList->next= nullptr;
+            sglLinkNode_ptr ptr=head->next;
+            for (int i = 0; i < quantity; ++i) {
+                ptr=ptr->next;
+            }//TODO：检查这里出来ptr是否是NULL
+            ptr=newList;//将newList加到线性表集合中
+            quantity++;
             return OK;//成功添加
         }
     }
@@ -335,27 +374,42 @@ public:
 //      函数原型：status RemoveList(const string& listName)
 //      功能说明：Lists是一个以顺序表形式管理的线性表的集合，在集合中查找名称为ListName的线性表，有则删除，返回OK，无则返回ERROR
     status RemoveList(const string& listName) {
-        for (int i = 0; i < SqLists.sqL_quantity; ++i) {
-            if (listName==SqLists.elem[i].name){//找到
-                SqLists.elem[i].name="/0";
-                SqLists.elem[i].L.DestroyList();
-                for (int j = i; j < SqLists.sqL_quantity; ++j) {//之后的list前移
-                    SqLists.elem[j]=SqLists.elem[j+1];
-                }
-                SqLists.sqL_quantity--;
+        sglLinkNode_ptr pre_ptr=head,ptr=head->next ;
+        for (int i = 0; i < quantity; ++i) {
+            if (ptr->name==listName){//找到
+                pre_ptr->next=ptr->next;//ptr的前驱的next指向ptr的next
+                ptr->linkStru.DestroyList();//TODO:在内存查看name的string类到底需不需要释放
+                free(ptr);
+                quantity--;
                 return OK;
             }
+            ptr=ptr->next;
+            pre_ptr=pre_ptr->next;
         }
         return ERROR;
+//        for (int i = 0; i < quantity; ++i) {
+//            if (listName==SqLists.elem[i].name){//找到
+//                SqLists.elem[i].name="/0";
+//                SqLists.elem[i].L.DestroyList();
+//                for (int j = i; j < quantity; ++j) {//之后的list前移
+//                    SqLists.elem[j]=SqLists.elem[j+1];
+//                }
+//                quantity--;
+//                return OK;
+//            }
+//        }
+//        return ERROR;//TODO：Delete
     }
 
 //      func4:查找线性表
 //      函数原型：int LocateList(char ListName[])
 //      功能说明：Lists是一个以顺序表形式管理的线性表的集合，在集合中查找名称为ListName的线性表，有则返回线性表的逻辑序号，无则返回0。
     int LocateList(const string& listName) const {
-        for (int i = 0; i < SqLists.sqL_quantity; ++i) {
-            if (SqLists.elem[i].name==listName)//found
+        sglLinkNode_ptr ptr=head->next;
+        for (int i = 0; i < quantity; ++i) {
+            if (ptr->name==listName)//found
                 return i+1;
+            ptr=ptr->next;
         }
         return 0;//遍历后未找到
     }
@@ -373,14 +427,14 @@ public:
             if (outfile.fail())
                 return OVERFLOWED;//文件打开失败
         }
-        outfile<<SqLists.sqL_quantity<<endl;//首先在listname写入线性表个数和每个线性表的名称
-        for (int i = 0; i < SqLists.sqL_quantity; ++i) {
-            outfile<<SqLists.elem[i].name<<endl;
+        outfile<<quantity<<endl;//首先在listname写入线性表个数和每个线性表的名称
+        sglLinkNode_ptr ptr=head->next;
+        for (int i = 0; i < quantity; ++i) {
+            outfile<<ptr->name<<endl;
+            ptr->linkStru.SaveList(filepath,ptr->name);//每个线性表单独写一个文件
+            ptr=ptr->next;
         }
         outfile.close();
-        for (int i = 0; i < SqLists.sqL_quantity; ++i) {//逐个线性表创建文件
-            SqLists.elem[i].L.SaveList(filepath,SqLists.elem[i].name);
-        }
         return OK;
     }
 
@@ -388,32 +442,22 @@ public:
 //		功能说明：如果线性表L存在，表示L中已经有数据，读入数据会覆盖原数据造成数据丢失，返回INFEASIBLE；
 //		否则将文件名为FileName的数据读入到线性表L中，返回OK。本实验不考虑用追加的方式读入文件数据追加到现有线性表中。
     status LoadLists(const string& filepath){
-        if (SqLists.sqL_quantity!=0)
+        if (quantity!=0)
             return INFEASIBLE;//当前线性表已存在，不能加载
         ifstream infile;
         infile.open(filepath+"listname.txt", ios::in);
         if (infile.fail()){
             return OVERFLOWED;//文件打开失败
         }
-        infile>>SqLists.sqL_quantity;
-        if (SqLists.sqL_quantity>SqLists.sqL_size){//扩容
-            LISTS::SingleL newbase=(LISTS::SingleL)realloc(SqLists.elem,sizeof(LISTS::SingleL)*(SqLists.sqL_size+INCREMENT))
-            ;
-            if (newbase==nullptr)
-                return OVERFLOWED;//扩容失败
-            else{
-                SqLists.elem=newbase;
-                SqLists.sqL_size+=INCREMENT;//扩容完成
-            }
-        }//扩容
-        for (int i = 0; i < SqLists.sqL_quantity; ++i) {
-            infile>>SqLists.elem[i].name;
+        infile>>quantity;
+        sglLinkNode_ptr ptr=head->next;
+        for (int i = 0; i < quantity; ++i) {
+            infile>>ptr->name;
+            ptr->linkStru.InitList();
+            ptr->linkStru.LoadList(filepath,ptr->name);
+            ptr=ptr->next;
         }
         infile.close();
-        for (int i = 0; i < SqLists.sqL_quantity; ++i) {//依次按照文件名读取
-            SqLists.elem[i].L.InitList();//数组中每个元素仍然需要初始化
-            SqLists.elem[i].L.LoadList(filepath,SqLists.elem[i].name);
-        }
         return OK;
     }
 };
