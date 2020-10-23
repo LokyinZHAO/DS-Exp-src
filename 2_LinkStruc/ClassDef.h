@@ -27,7 +27,7 @@ public:
     }
 //func1:初始化线性表
 //函数名原型：status InitList()
-//如果线性表L不存在，操作结果是构造一个空的线性表，返回OK，否则返回INFEASIBLE。
+//如果线性表L不存在，操作结果是构造一个空的线性表，返回OK，若分配失败返回OVERFLOWED，否则返回INFEASIBLE。
     status InitList(){
     if (head!= nullptr)
         return INFEASIBLE;
@@ -44,12 +44,7 @@ public:
     status DestroyList(){
     if (head== nullptr)
         return INFEASIBLE;//不能对未初始化的链表销毁
-    LinkList p=head->next;
-    while (p!= nullptr){//依次free head 之后的节点
-        LinkList q=p;
-        p=p->next;
-        free(q);
-    }
+    ClearList();//先清空线性表
     free(head);
     head= nullptr;
         return OK;
@@ -87,7 +82,7 @@ public:
         if (head== nullptr)
             return INFEASIBLE;
         else {
-            len=head->data;
+            len=head->data;//head的data存储了线性表长度的数据
             return OK;
         }
 }
@@ -107,11 +102,10 @@ public:
             }
             q=q->next;
         }
-        return ERROR;//未找到
 };
 //func7:查找元素
 //函数原型：status LocateElem(ElemType e,int &i)
-//功能说明：若线性表L不存在，返回INFEASIBLE；若没有找到指定的元素e，则查找失败，返回ERROR；若查找成功，则返回元素逻辑序号i。
+//功能说明：若线性表L不存在，返回INFEASIBLE；若没有找到指定的元素e，则查找失败，返回ERROR；若查找成功，采用引用的方式返回元素序号，返回OK。
     status LocateElem(ElemType e,int &i){
         if (head== nullptr)//线性表不存在
             return INFEASIBLE;
@@ -131,7 +125,7 @@ public:
         if (head== nullptr)//线性表不存在
             return INFEASIBLE;
         LinkList q=head ,p=head ->next;
-        if (q->next== nullptr)
+        if (head->data==0)
             return ERROR;//空表，直接返回为"未找到元素"，不再查找
         if (p->data==e)
             return UNEXPECTED;//第一个元素无前驱
@@ -153,21 +147,19 @@ public:
     status NextElem(ElemType e,ElemType &next){
         if (head== nullptr)//线性表不存在
             return INFEASIBLE;
-        LinkList p=head,q=head->next;
-        if (q->next== nullptr)
+        if (head->data==0)
             return ERROR;//空表，直接返回为"未找到元素"，不再查找
-        p=p->next;
-        q=q->next;
+        LinkList p=head->next,q=p->next;//p指向首元素
         while (q!= nullptr){
             if (p->data==e){
-                next=q->data;
+                next=q->data;//访问后继
                 return OK;
             }
             p=p->next;
             q=q->next;
         }
         if (p->data==e)
-            return UNEXPECTED;//最后一个元素无后继
+            return UNEXPECTED;//最后一个元素匹配，但无后继
         return ERROR;//未找到
     }
 //func10:插入元素
@@ -176,7 +168,7 @@ public:
     status ListInsert(int i,ElemType e){
         if (head== nullptr)//线性表不存在
             return INFEASIBLE;
-        LinkList p=head;//TODO：不明原因这里有时会BADACCESS访问
+        LinkList p=head;//TODO：不明原因在读取文件这里head有时会BAD_ACCESS访问，目测是head没成功分配
         if (i<1||i>head->data+1) return ERROR;//插入位置不合法
         for (int j = 1; j <= head->data+1; ++j) {
             if (j==i){
@@ -213,12 +205,13 @@ public:
 //func12:遍历线性表
 //函数原型：status ListTraverse()
 //功能说明：若线性表L不存在，返回INFEASIBLE；否则将元素依次输出，并返回OK。
-     status ListTraverse(){
+     status ListTraverse(const string& listname){
         if (head== nullptr)//线性表不存在
             return INFEASIBLE;
         if (head->data==0)
             return ERROR;//空表
         LinkList p=head->next;
+        cout<<listname<<":"<<endl;
         for (int i = 0; i < head->data; ++i) {
             cout<<p->data<<" ";
             p=p->next;
@@ -228,14 +221,14 @@ public:
     }
 //func13:存储文件
 //函数原型：status SaveList(string filepath,string filename)
-//功能说明：如果线性表L不存在，返回INFEASIBLE；否则将线性表L的全部元素写入到文件名为FileName的文件中，返回OK。
-    status SaveList(string filepath,string filename){
-        if (head== nullptr)
+//功能说明：如果线性表L不存在，返回INFEASIBLE；否则将线性表L的全部元素写入到文件名为filename的文件中，返回OK。
+    status SaveList(const string& filepath,const string& filename){
+        if (head== nullptr)//线性表不存在
             return INFEASIBLE;
         ofstream outfile;
         outfile.open(filepath+filename+".txt",ios::out|ios::trunc);
         if (outfile.fail())
-            return OVERFLOWED;
+            return OVERFLOWED;//文件打开失败
         outfile<<head->data<<endl;//首先写入表长
         LinkList p=head->next;
         for (int i = 0; i < head->data; ++i) {
@@ -246,9 +239,11 @@ public:
         return OK;
     }
 //func14:读取文件
-//函数原型：status LoadList(Lchar FileName[])
-//功能说明：如果线性表L存在，表示L中已经有数据，读入数据会覆盖原数据造成数据丢失，返回INFEASIBLE；否则将文件名为FileName的数据读入到线性表L中，返回OK。
-    status LoadList(string filepath, string filename){
+//函数原型：status LoadList(string filepath, string filename)
+//功能说明：如果线性表L存在，表示L中已经有数据，读入数据会覆盖原数据造成数据丢失，返回INFEASIBLE；否则将文件名为filename的数据读入到线性表L中，返回OK。
+    status LoadList(const string& filepath, const string& filename){
+        if (head->data!=0)
+            return INFEASIBLE;//线性表中已经有元素，不可行
         ifstream infile;
         infile.open(filepath+filename+".txt",ios::in);
         if (infile.fail())
@@ -261,15 +256,14 @@ public:
             ListInsert(i+1,r);//读入元素
         }
         infile.close();
+        return OK;
     }
 };
 
-class MultiSq{
+class LinkSet{
 public:
     typedef struct{  //线性表集合的管理表定义
-
-        typedef struct {
-//              每个线性表元素包含一个线性表对象和线性表名称
+        typedef struct {//每个线性表元素包含一个线性表对象和线性表名称
             string  name;
             LinkStru L;
         } *SingleL;
@@ -278,10 +272,11 @@ public:
         int sqL_quantity;//顺序表数
         int sqL_size;
     }LISTS;
+
 private:
     LISTS SqLists;
 public:
-    MultiSq(){//构造函数自动初始化
+    LinkSet(){//构造函数自动初始化
         InitMultList();
     }
     LISTS Get(){//获取该线性表集合

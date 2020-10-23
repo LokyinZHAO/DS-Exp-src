@@ -235,7 +235,7 @@ int ManageSingleList(LinkStru &LinkL, const string& listName) {
             }//end of case 11:删除元素
 
             case 12:{//遍历线性表
-                outcome=LinkL.ListTraverse();
+                outcome=LinkL.ListTraverse(listName);
                 if (outcome==OK)
                     cout<<"线性表遍历完成！"<<endl;
                 else if (outcome==INFEASIBLE)
@@ -264,7 +264,7 @@ int ManageSingleList(LinkStru &LinkL, const string& listName) {
 
 int main() {
     int opt=1;
-    MultiSq Sqs;
+    LinkSet Sqs;
     string  input;
     while (opt){
         system("clear");

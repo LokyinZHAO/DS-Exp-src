@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="2_LinkStruc" pattern="file[EXP src]:2_LinkStruc//*&amp;&amp;!file[EXP src]:1_SqStruc//*" />
+</component>
