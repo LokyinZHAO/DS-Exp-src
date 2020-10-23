@@ -1,5 +1,5 @@
 //
-// Created by Lokyin Zhao on 2020/10/22.
+// Created by Lokyin Zhao on 2020/10/16.
 //
 
 #ifndef EXP_SRC_CLASSDEF_H
@@ -100,7 +100,7 @@ public:
         if (i<1||i>head->data)
             return ERROR;//i不合法
         LinkList q=head->next;
-        for (int j= 0; j < head->data; ++j) {//依次遍历访问到第i个节点
+        for (int j= 1; j <= head->data; ++j) {//依次遍历访问到第i个节点
             if (j==i){
                 e=q->data;
                 return OK;
@@ -110,15 +110,16 @@ public:
         return ERROR;//未找到
 };
 //func7:查找元素
-//函数原型：status LocateElem(ElemType e)
+//函数原型：status LocateElem(ElemType e,int &i)
 //功能说明：若线性表L不存在，返回INFEASIBLE；若没有找到指定的元素e，则查找失败，返回ERROR；若查找成功，则返回元素逻辑序号i。
-    status LocateElem(ElemType e){
+    status LocateElem(ElemType e,int &i){
         if (head== nullptr)//线性表不存在
             return INFEASIBLE;
         LinkList q=head->next;
-        for (int i = 1; i <= head->data; ++i) {
-            if (q->data==e)
-                return i;//返回逻辑序号i
+        for (i = 1; i <= head->data; ++i) {
+            if (q->data==e) {
+                return OK;//返回
+            }
             q=q->next;
         }
         return ERROR;//未找到元素e
@@ -175,7 +176,7 @@ public:
     status ListInsert(int i,ElemType e){
         if (head== nullptr)//线性表不存在
             return INFEASIBLE;
-        LinkList p=head;
+        LinkList p=head;//TODO：不明原因这里有时会BADACCESS访问
         if (i<1||i>head->data+1) return ERROR;//插入位置不合法
         for (int j = 1; j <= head->data+1; ++j) {
             if (j==i){
@@ -248,14 +249,13 @@ public:
 //函数原型：status LoadList(Lchar FileName[])
 //功能说明：如果线性表L存在，表示L中已经有数据，读入数据会覆盖原数据造成数据丢失，返回INFEASIBLE；否则将文件名为FileName的数据读入到线性表L中，返回OK。
     status LoadList(string filepath, string filename){
-        if (head!= nullptr)
-            return INFEASIBLE;//当前线性表已存在
         ifstream infile;
         infile.open(filepath+filename+".txt",ios::in);
         if (infile.fail())
             return OVERFLOWED;//文件打开失败
-        infile>>head->data;
-        for (int i = 0; i < head->data; ++i) {
+        int len;
+        infile>>len;
+        for (int i = 0; i < len; ++i) {
             int r;
             infile>>r;
             ListInsert(i+1,r);//读入元素
@@ -416,7 +416,7 @@ public:
         }
         infile.close();
         for (int i = 0; i < SqLists.sqL_quantity; ++i) {//依次按照文件名读取
-            SqLists.elem[i].L.InitList();//TODO:检查这里到底要不要初始化
+            SqLists.elem[i].L.InitList();//数组中每个元素仍然需要初始化
             SqLists.elem[i].L.LoadList(filepath,SqLists.elem[i].name);
         }
         return OK;

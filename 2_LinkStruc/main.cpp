@@ -1,5 +1,5 @@
 //
-// Created by Lokyin Zhao on 2020/9/29.
+// Created by Lokyin Zhao on 2020/10/16.
 //
 
 #include <iostream>
@@ -141,7 +141,7 @@ int ManageSingleList(LinkStru &LinkL, const string& listName) {
                 ElemType e;
                 cout<<"请输入要查找的元素："<<endl;
                 cin>>e;
-                outcome=LinkL.LocateElem(e);
+                outcome=LinkL.LocateElem(e,i);
                 if (outcome==INFEASIBLE)
                     cout<<"不可行，线性表为空！"<<endl;
                 else if (outcome==ERROR)
@@ -235,7 +235,7 @@ int ManageSingleList(LinkStru &LinkL, const string& listName) {
             }//end of case 11:删除元素
 
             case 12:{//遍历线性表
-                outcome=LinkL.ListTraverse();//TODO:应该返回一个数组在之后输出
+                outcome=LinkL.ListTraverse();
                 if (outcome==OK)
                     cout<<"线性表遍历完成！"<<endl;
                 else if (outcome==INFEASIBLE)
@@ -414,7 +414,7 @@ int main() {
                             int j;
                             for (j = 0; j < Sqs.Get().elem[i].L.GetHead()->data&&j<5; ++j) {
                                 int e;
-                                Sqs.Get().elem[i].L.GetElem(j,e);
+                                Sqs.Get().elem[i].L.GetElem(j+1,e);
                                 cout<<" "<<e;
                             }
                             if (j==5&&(Sqs.Get().elem[i].L.GetHead()->data!=5))
