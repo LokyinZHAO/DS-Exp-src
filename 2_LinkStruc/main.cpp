@@ -4,8 +4,10 @@
 
 #include <iostream>
 #include <sstream>
+#include <vector>
 #include "def.h"
 #include "ClassDef.h"
+
 using namespace std;
 
 bool IsdigitAll(string str)//用于判断输入是否全为数字
@@ -20,14 +22,14 @@ bool IsdigitAll(string str)//用于判断输入是否全为数字
     return true;
 }
 
-int ManageSingleList(LinkStru &LinkL, const string& listName) {
+int ManageSingleList(LinkStru &LinkL) {
     int op=1;
     string input;
     while (op){
         system("clear");
         cout<<endl
             <<"      单线性表管理子菜单 \n"
-            <<"      \""<<listName<<"\" "<<endl;
+            <<"      \""<<LinkL.linkName<<"\" "<<endl;
         cout<<"-------------------------------------------------\n"
             <<"\t 1.  初始化线性表\n"
             <<"\t 2.  销毁线性表\n"
@@ -97,9 +99,9 @@ int ManageSingleList(LinkStru &LinkL, const string& listName) {
                 if (outcome==INFEASIBLE)
                     cout<<"不可行，线性表不存在！"<<endl;
                 else if (outcome==TRUE)
-                    cout<<"线性表 \""<<listName<<"\" 为空表！"<<endl;
+                    cout<<"线性表 \""<<LinkL.linkName<<"\" 为空表！"<<endl;
                 else
-                    cout<<"线性表 \""<<listName<<"\" 不为空表！"<<endl;
+                    cout<<"线性表 \""<<LinkL.linkName<<"\" 不为空表！"<<endl;
                 cout<<"键入任意键以继续"<<endl;
                 getchar();getchar();
                 break;
@@ -111,7 +113,7 @@ int ManageSingleList(LinkStru &LinkL, const string& listName) {
                 if (outcome==INFEASIBLE)
                     cout<<"不可行，线性表不存在！"<<endl;
                 else if (outcome==OK){
-                    cout<<"线性表 \""<<listName<<"\" 长度为 "<<len<<" ！"<<endl;
+                    cout<<"线性表 \""<<LinkL.linkName<<"\" 长度为 "<<len<<" ！"<<endl;
                 }
                 cout<<"键入任意键以继续"<<endl;
                 getchar();getchar();
@@ -235,7 +237,7 @@ int ManageSingleList(LinkStru &LinkL, const string& listName) {
             }//end of case 11:删除元素
 
             case 12:{//遍历线性表
-                outcome=LinkL.ListTraverse(listName);
+                outcome=LinkL.ListTraverse(LinkL.linkName);
                 if (outcome==OK)
                     cout<<"线性表遍历完成！"<<endl;
                 else if (outcome==INFEASIBLE)
@@ -317,7 +319,15 @@ int main() {
                     getchar();getchar();
                     break;
                 }
-                outcome=linkSet.AddList(name);
+                cout<<"请输入整型线性表数据，空格隔开，以0结尾:"<<endl;//读入数据
+                vector<ElemType> inputElem;//
+                int r;
+                cin>>r;
+                while (r){
+                    inputElem.push_back(r);
+                    cin>>r;
+                }
+                outcome=linkSet.AddList(name,inputElem);
                 if (outcome == OVERFLOWED)
                     cout<<"分配空间失败，线性表未创建！"<<endl;
                 else if (outcome==OK)
@@ -345,7 +355,7 @@ int main() {
                 cin>>name;
                 int location=linkSet.LocateList(name);
                 if (location){
-                    cout<<"成功，找到名为 "<<name<<" 的线性表在 "<<location<<" 号位！"<<endl;
+                    cout<<"成功，找到名为 "<<name<<" 的线性表是第 "<<location<<" 个线性表！"<<endl;
                 } else{
                     cout<<"错误，未找到名为 "<<name<<" 的线性表！"<<endl;
                 }
@@ -354,7 +364,7 @@ int main() {
                 break;
             }
             case 5:{//保存线性表集合
-                string  filename="./data/";
+                string  filename=FILEPATH;
                 outcome=linkSet.SaveLists(filename);
                 if (outcome == OVERFLOWED){
                     cout<<"打开文件失败！"<<endl;
@@ -366,7 +376,7 @@ int main() {
                 break;
             }
             case 6:{//读取线性表集合
-                string filename="./data/";
+                string filename=FILEPATH;
                 outcome= linkSet.LoadLists(filename);
                 if (outcome==OK)
                     cout<<"线性表集合数据读取成功！"<<endl;
@@ -390,10 +400,9 @@ int main() {
                     break;
                 }
                 else {
-                    idx--;
-                    int stat=ManageSingleList(linkSet.GetNode(idx)->linkStru, linkSet.GetNode(idx)->name);
+                    int stat=ManageSingleList(linkSet.GetNode(idx)->linkStru);
                     if (stat==1){//执行了线性表销毁
-                        string  name=linkSet.GetNode(idx)->name;//记录被销毁的线性表名称
+                        string  name=linkSet.GetNode(idx)->linkStru.linkName;//记录被销毁的线性表名称
                         linkSet.RemoveList(name);
                         cout<<"线性表 "<<name<<" 已被销毁并移除，即将返回上级菜单"<<endl;
                         cout<<"键入任意键以继续"<<endl;
@@ -407,8 +416,8 @@ int main() {
                     cout<<"不存在任何线性表！"<<endl;
                 } else{
                     cout<<"存在的线性表："<<endl;
-                    for (int i = 0; i < linkSet.GetQuantity(); ++i) {
-                        cout <<i+1 << ". " << linkSet.GetNode(i)->name << "\t";
+                    for (int i = 1; i <= linkSet.GetQuantity(); ++i) {
+                        cout <<i << ". " << linkSet.GetNode(i)->linkStru.linkName << "\t";
                         if (linkSet.GetNode(i)->linkStru.GetHead()->data != 0){
                             cout<<": ";
                             int j;
