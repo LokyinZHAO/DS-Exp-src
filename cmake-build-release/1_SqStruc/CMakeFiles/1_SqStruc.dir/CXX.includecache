@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/1_SqStruc/ClassDef.h
+fstream
+-
+
+/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/1_SqStruc/def.h
+cstdio
+-
+cstdlib
+-
+
+/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/1_SqStruc/main.cpp
+iostream
+-
+sstream
+-
+def.h
+/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/1_SqStruc/def.h
+ClassDef.h
+/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/1_SqStruc/ClassDef.h
+
