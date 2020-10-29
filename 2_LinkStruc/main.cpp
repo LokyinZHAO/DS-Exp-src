@@ -5,6 +5,7 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
+#include <string>
 #include "def.h"
 #include "ClassDef.h"
 

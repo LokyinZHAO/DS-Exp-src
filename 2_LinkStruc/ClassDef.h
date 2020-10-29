@@ -6,7 +6,6 @@
 #define EXP_SRC_CLASSDEF_H
 #include <fstream>
 #include "def.h"
-#include <fstream>
 
 using namespace std;
 
@@ -177,10 +176,10 @@ public:
         if (i<1||i>head->data+1) return ERROR;//插入位置不合法
         for (int j = 1; j <= head->data+1; ++j) {
             if (j==i){
-                LinkList next=p->next;
-                p->next=(LinkList)malloc(sizeof(LNode));
-                p->next->data=e;
-                p->next->next=next;
+                LinkList newnode=(LinkList)malloc(sizeof(LNode));
+                newnode->data=e;
+                newnode->next=p->next;
+                p->next=newnode;
                 head->data++;//数目加
                 return OK;//成功返回
             }
@@ -197,10 +196,10 @@ public:
         if (i<1||i>head->data) return ERROR;//删除位置不合法
         for (int j = 1; j <= head->data ; ++j) {
             if (j==i){
-                LinkList next=p->next->next;
+                LinkList nextnode=p->next->next;
                 e=p->next->data;
                 free(p->next);
-                p->next=next;
+                p->next=nextnode;
                 head->data--;//数目减
                 return OK;//成功返回
             }
