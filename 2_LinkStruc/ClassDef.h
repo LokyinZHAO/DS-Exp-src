@@ -155,14 +155,13 @@ public:
             return INFEASIBLE;
         if (head->data==0)
             return ERROR;//空表，直接返回为"未找到元素"，不再查找
-        LinkList p=head->next,q=p->next;//p指向首元素，由于判断了空表，所以p首元结点一定存在，但是从
-        while (q!= nullptr){
+        LinkList p=head->next;//p指向首元素，由于判断了空表，所以p首元结点一定存在，但是从
+        while (p->next!= nullptr){
             if (p->data==e){
-                next=q->data;//访问后继
+                next=p->next->data;//访问后继
                 return OK;
             }
             p=p->next;
-            q=q->next;
         }
         if (p->data==e)
             return UNEXPECTED;//最后一个元素匹配，但无后继
