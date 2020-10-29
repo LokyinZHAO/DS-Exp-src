@@ -84,8 +84,8 @@ public:
     else return FALSE;
 }
 //func5:线性表长度
-//函数名原型：status ListLength()
-//若线性表L不存在，则返回INFEASIBLE；否则返回线性表L的长度。
+//函数名原型：status ListLength(int &len)
+//若线性表L不存在，则返回INFEASIBLE；否则通过引用len返回线性表L的长度，并且最终返回OK。
     status ListLength(int &len){
         if (head== nullptr)
             return INFEASIBLE;
@@ -102,14 +102,12 @@ public:
             return INFEASIBLE;
         if (i<1||i>head->data)
             return ERROR;//i不合法
-        LinkList q=head->next;
-        for (int j= 1; j <= head->data; ++j) {//依次遍历访问到第i个节点
-            if (j==i){
-                e=q->data;
-                return OK;
-            }
+        LinkList q=head;
+        for (int j= 1; j <= i; ++j) {//依次遍历访问到第i个节点
             q=q->next;
         }
+        e=q->data;
+        return OK;
 };
 //func7:查找元素
 //函数原型：status LocateElem(ElemType e,int &i)
@@ -132,9 +130,9 @@ public:
     status PriorElem(ElemType e,ElemType &pre){
         if (head== nullptr)//线性表不存在
             return INFEASIBLE;
-        LinkList q=head ,p=head ->next;
         if (head->data==0)
             return ERROR;//空表，直接返回为"未找到元素"，不再查找
+        LinkList q=head ,p=head ->next;
         if (p->data==e)
             return UNEXPECTED;//第一个元素无前驱
         q=q->next;
@@ -157,7 +155,7 @@ public:
             return INFEASIBLE;
         if (head->data==0)
             return ERROR;//空表，直接返回为"未找到元素"，不再查找
-        LinkList p=head->next,q=p->next;//p指向首元素
+        LinkList p=head->next,q=p->next;//p指向首元素，由于判断了空表，所以p首元结点一定存在，但是从
         while (q!= nullptr){
             if (p->data==e){
                 next=q->data;//访问后继
