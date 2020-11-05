@@ -182,13 +182,13 @@
 		<Unit filename="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/2_LinkStruc/main.cpp">
 			<Option target="2_LinkStruc"/>
 		</Unit>
+		<Unit filename="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/3_Tree/ClassDef.h">
+			<Option target="3_Tree"/>
+		</Unit>
 		<Unit filename="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/3_Tree/def.h">
 			<Option target="3_Tree"/>
 		</Unit>
 		<Unit filename="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/3_Tree/main.cpp">
-			<Option target="3_Tree"/>
-		</Unit>
-		<Unit filename="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/3_Tree/stu.h">
 			<Option target="3_Tree"/>
 		</Unit>
 		<Unit filename="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/CMakeLists.txt">
