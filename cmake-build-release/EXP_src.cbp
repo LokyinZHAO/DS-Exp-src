@@ -5,7 +5,7 @@
 		<Option title="EXP_src"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;CMake Files\1_SqStruc\;CMake Files\2_LinkStruc\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\1_SqStruc\;CMake Files\2_LinkStruc\;CMake Files\3_Tree\;"/>
 		<Build>
 			<Target title="all">
 				<Option working_dir="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-release"/>
@@ -121,6 +121,48 @@
 					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP\ src/cmake-build-release/2_LinkStruc/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
+			<Target title="3_Tree">
+				<Option output="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-release/3_Tree/3_Tree" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-release/3_Tree"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP\ src/cmake-build-release/3_Tree/Makefile&quot;  VERBOSE=1 3_Tree"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP\ src/cmake-build-release/3_Tree/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP\ src/cmake-build-release/3_Tree/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP\ src/cmake-build-release/3_Tree/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="3_Tree/fast">
+				<Option output="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-release/3_Tree/3_Tree" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-release/3_Tree"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP\ src/cmake-build-release/3_Tree/Makefile&quot;  VERBOSE=1 3_Tree/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP\ src/cmake-build-release/3_Tree/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP\ src/cmake-build-release/3_Tree/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP\ src/cmake-build-release/3_Tree/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
 		</Build>
 		<Unit filename="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/1_SqStruc/ClassDef.h">
 			<Option target="1_SqStruc"/>
@@ -140,8 +182,14 @@
 		<Unit filename="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/2_LinkStruc/main.cpp">
 			<Option target="2_LinkStruc"/>
 		</Unit>
-		<Unit filename="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/2_LinkStruc/stu.h">
-			<Option target="2_LinkStruc"/>
+		<Unit filename="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/3_Tree/def.h">
+			<Option target="3_Tree"/>
+		</Unit>
+		<Unit filename="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/3_Tree/main.cpp">
+			<Option target="3_Tree"/>
+		</Unit>
+		<Unit filename="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/3_Tree/stu.h">
+			<Option target="3_Tree"/>
 		</Unit>
 		<Unit filename="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
@@ -151,6 +199,9 @@
 		</Unit>
 		<Unit filename="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/2_LinkStruc/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\2_LinkStruc\"/>
+		</Unit>
+		<Unit filename="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/3_Tree/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\3_Tree\"/>
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>

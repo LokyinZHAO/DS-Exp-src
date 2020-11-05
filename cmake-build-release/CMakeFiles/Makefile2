@@ -75,18 +75,21 @@ CMAKE_BINARY_DIR = "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-bui
 # The main recursive "all" target.
 all: 1_SqStruc/all
 all: 2_LinkStruc/all
+all: 3_Tree/all
 
 .PHONY : all
 
 # The main recursive "preinstall" target.
 preinstall: 1_SqStruc/preinstall
 preinstall: 2_LinkStruc/preinstall
+preinstall: 3_Tree/preinstall
 
 .PHONY : preinstall
 
 # The main recursive "clean" target.
 clean: 1_SqStruc/clean
 clean: 2_LinkStruc/clean
+clean: 3_Tree/clean
 
 .PHONY : clean
 
@@ -125,6 +128,24 @@ clean: 2_LinkStruc/clean
 2_LinkStruc/clean: 2_LinkStruc/CMakeFiles/2_LinkStruc.dir/clean
 
 .PHONY : 2_LinkStruc/clean
+
+#=============================================================================
+# Directory level rules for directory 3_Tree
+
+# Recursive "all" directory target.
+3_Tree/all: 3_Tree/CMakeFiles/3_Tree.dir/all
+
+.PHONY : 3_Tree/all
+
+# Recursive "preinstall" directory target.
+3_Tree/preinstall:
+
+.PHONY : 3_Tree/preinstall
+
+# Recursive "clean" directory target.
+3_Tree/clean: 3_Tree/CMakeFiles/3_Tree.dir/clean
+
+.PHONY : 3_Tree/clean
 
 #=============================================================================
 # Target rules for target 1_SqStruc/CMakeFiles/1_SqStruc.dir
@@ -179,6 +200,33 @@ clean: 2_LinkStruc/clean
 2_LinkStruc/CMakeFiles/2_LinkStruc.dir/clean:
 	$(MAKE) $(MAKESILENT) -f 2_LinkStruc/CMakeFiles/2_LinkStruc.dir/build.make 2_LinkStruc/CMakeFiles/2_LinkStruc.dir/clean
 .PHONY : 2_LinkStruc/CMakeFiles/2_LinkStruc.dir/clean
+
+#=============================================================================
+# Target rules for target 3_Tree/CMakeFiles/3_Tree.dir
+
+# All Build rule for target.
+3_Tree/CMakeFiles/3_Tree.dir/all:
+	$(MAKE) $(MAKESILENT) -f 3_Tree/CMakeFiles/3_Tree.dir/build.make 3_Tree/CMakeFiles/3_Tree.dir/depend
+	$(MAKE) $(MAKESILENT) -f 3_Tree/CMakeFiles/3_Tree.dir/build.make 3_Tree/CMakeFiles/3_Tree.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-release/CMakeFiles" --progress-num=5,6 "Built target 3_Tree"
+.PHONY : 3_Tree/CMakeFiles/3_Tree.dir/all
+
+# Build rule for subdir invocation for target.
+3_Tree/CMakeFiles/3_Tree.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-release/CMakeFiles" 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 3_Tree/CMakeFiles/3_Tree.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-release/CMakeFiles" 0
+.PHONY : 3_Tree/CMakeFiles/3_Tree.dir/rule
+
+# Convenience name for target.
+3_Tree: 3_Tree/CMakeFiles/3_Tree.dir/rule
+
+.PHONY : 3_Tree
+
+# clean rule for target.
+3_Tree/CMakeFiles/3_Tree.dir/clean:
+	$(MAKE) $(MAKESILENT) -f 3_Tree/CMakeFiles/3_Tree.dir/build.make 3_Tree/CMakeFiles/3_Tree.dir/clean
+.PHONY : 3_Tree/CMakeFiles/3_Tree.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

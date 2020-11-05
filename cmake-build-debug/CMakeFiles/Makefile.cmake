@@ -35,6 +35,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/Users/lokyin/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/202.7660.37/CLion.app/Contents/bin/cmake/mac/share/cmake-3.17/Modules/ProcessorCount.cmake"
   "../1_SqStruc/CMakeLists.txt"
   "../2_LinkStruc/CMakeLists.txt"
+  "../3_Tree/CMakeLists.txt"
   "../CMakeLists.txt"
   "CMakeFiles/3.17.3/CMakeCCompiler.cmake"
   "CMakeFiles/3.17.3/CMakeCXXCompiler.cmake"
@@ -52,10 +53,12 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   "1_SqStruc/CMakeFiles/CMakeDirectoryInformation.cmake"
   "2_LinkStruc/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "3_Tree/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "1_SqStruc/CMakeFiles/1_SqStruc.dir/DependInfo.cmake"
   "2_LinkStruc/CMakeFiles/2_LinkStruc.dir/DependInfo.cmake"
+  "3_Tree/CMakeFiles/3_Tree.dir/DependInfo.cmake"
   )

@@ -71,7 +71,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-release"
+CMAKE_BINARY_DIR = "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -100,14 +100,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-release/CMakeFiles" "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-release/CMakeFiles/progress.marks"
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-release/CMakeFiles" 0
+	cd "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug" && $(CMAKE_COMMAND) -E cmake_progress_start "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug/CMakeFiles" "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug/3_Tree/CMakeFiles/progress.marks"
+	cd "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 3_Tree/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
 clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 clean
+	cd "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 3_Tree/clean
 .PHONY : clean
 
 # The main clean target
@@ -117,57 +117,60 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 preinstall
+	cd "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 3_Tree/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 preinstall
+	cd "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 3_Tree/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug" && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
-#=============================================================================
-# Target rules for targets named 1_SqStruc
+# Convenience name for target.
+3_Tree/CMakeFiles/3_Tree.dir/rule:
+	cd "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 3_Tree/CMakeFiles/3_Tree.dir/rule
+.PHONY : 3_Tree/CMakeFiles/3_Tree.dir/rule
 
-# Build rule for target.
-1_SqStruc: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 1_SqStruc
-.PHONY : 1_SqStruc
+# Convenience name for target.
+3_Tree: 3_Tree/CMakeFiles/3_Tree.dir/rule
 
-# fast build rule for target.
-1_SqStruc/fast:
-	$(MAKE) $(MAKESILENT) -f 1_SqStruc/CMakeFiles/1_SqStruc.dir/build.make 1_SqStruc/CMakeFiles/1_SqStruc.dir/build
-.PHONY : 1_SqStruc/fast
-
-#=============================================================================
-# Target rules for targets named 2_LinkStruc
-
-# Build rule for target.
-2_LinkStruc: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 2_LinkStruc
-.PHONY : 2_LinkStruc
-
-# fast build rule for target.
-2_LinkStruc/fast:
-	$(MAKE) $(MAKESILENT) -f 2_LinkStruc/CMakeFiles/2_LinkStruc.dir/build.make 2_LinkStruc/CMakeFiles/2_LinkStruc.dir/build
-.PHONY : 2_LinkStruc/fast
-
-#=============================================================================
-# Target rules for targets named 3_Tree
-
-# Build rule for target.
-3_Tree: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 3_Tree
 .PHONY : 3_Tree
 
 # fast build rule for target.
 3_Tree/fast:
-	$(MAKE) $(MAKESILENT) -f 3_Tree/CMakeFiles/3_Tree.dir/build.make 3_Tree/CMakeFiles/3_Tree.dir/build
+	cd "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug" && $(MAKE) $(MAKESILENT) -f 3_Tree/CMakeFiles/3_Tree.dir/build.make 3_Tree/CMakeFiles/3_Tree.dir/build
 .PHONY : 3_Tree/fast
+
+main.o: main.cpp.o
+
+.PHONY : main.o
+
+# target to build an object file
+main.cpp.o:
+	cd "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug" && $(MAKE) $(MAKESILENT) -f 3_Tree/CMakeFiles/3_Tree.dir/build.make 3_Tree/CMakeFiles/3_Tree.dir/main.cpp.o
+.PHONY : main.cpp.o
+
+main.i: main.cpp.i
+
+.PHONY : main.i
+
+# target to preprocess a source file
+main.cpp.i:
+	cd "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug" && $(MAKE) $(MAKESILENT) -f 3_Tree/CMakeFiles/3_Tree.dir/build.make 3_Tree/CMakeFiles/3_Tree.dir/main.cpp.i
+.PHONY : main.cpp.i
+
+main.s: main.cpp.s
+
+.PHONY : main.s
+
+# target to generate assembly for a file
+main.cpp.s:
+	cd "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug" && $(MAKE) $(MAKESILENT) -f 3_Tree/CMakeFiles/3_Tree.dir/build.make 3_Tree/CMakeFiles/3_Tree.dir/main.cpp.s
+.PHONY : main.cpp.s
 
 # Help Target
 help:
@@ -177,9 +180,10 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... 1_SqStruc"
-	@echo "... 2_LinkStruc"
 	@echo "... 3_Tree"
+	@echo "... main.o"
+	@echo "... main.i"
+	@echo "... main.s"
 .PHONY : help
 
 
@@ -191,6 +195,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug" && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

@@ -6,3 +6,6 @@
 /Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug/2_LinkStruc/CMakeFiles/rebuild_cache.dir
 /Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug/2_LinkStruc/CMakeFiles/edit_cache.dir
 /Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug/2_LinkStruc/CMakeFiles/2_LinkStruc.dir
+/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug/3_Tree/CMakeFiles/rebuild_cache.dir
+/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug/3_Tree/CMakeFiles/edit_cache.dir
+/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug/3_Tree/CMakeFiles/3_Tree.dir

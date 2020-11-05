@@ -156,6 +156,19 @@ depend:
 	$(MAKE) $(MAKESILENT) -f 2_LinkStruc/CMakeFiles/2_LinkStruc.dir/build.make 2_LinkStruc/CMakeFiles/2_LinkStruc.dir/build
 .PHONY : 2_LinkStruc/fast
 
+#=============================================================================
+# Target rules for targets named 3_Tree
+
+# Build rule for target.
+3_Tree: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 3_Tree
+.PHONY : 3_Tree
+
+# fast build rule for target.
+3_Tree/fast:
+	$(MAKE) $(MAKESILENT) -f 3_Tree/CMakeFiles/3_Tree.dir/build.make 3_Tree/CMakeFiles/3_Tree.dir/build
+.PHONY : 3_Tree/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -166,6 +179,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... 1_SqStruc"
 	@echo "... 2_LinkStruc"
+	@echo "... 3_Tree"
 .PHONY : help
 
 

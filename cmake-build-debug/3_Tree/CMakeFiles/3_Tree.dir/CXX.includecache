@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/3_Tree/def.h
+stdio.h
+/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/3_Tree/stdio.h
+stdlib.h
+/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/3_Tree/stdlib.h
+
+/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/3_Tree/main.cpp
+def.h
+/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/3_Tree/def.h
+stu.h
+/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/3_Tree/stu.h
+string.h
+/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/3_Tree/string.h
+
+/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/3_Tree/stu.h
+fstream
+-
+iostream
+-
+stack
+-
+
