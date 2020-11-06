@@ -145,7 +145,7 @@ public:
         BiTree locate_parent = LocateParent(T, e);
         if (locate_parent) {
             if (!(locate_parent->lchild && locate_parent->rchild)) {//无兄弟
-                return ERROR;
+                return nullptr;
             }
             if (locate_parent->lchild->data.key == e) {
                 return locate_parent->rchild;
@@ -153,12 +153,11 @@ public:
                 return locate_parent->lchild;
             }
         } else
-            return ERROR;
+            return nullptr;
     }
 
     //func7:插入结点
     //功能说明：e是和T中结点关键字类型相同的给定值，LR为0或1，c是待插入结点；根据LR为0或者1，插入结点c到T中，作为关键字为e的结点的左或右孩子结点，结点e的原有左子树或右子树则为结点c的右子树，返回OK。如果插入失败，返回ERROR。
-    //特别地，当LR为-1时，作为根结点插入，原根结点作为c的右子树。
     status InsertNode(BiTree &T, KeyType e, int LR, TElemType c) {
         if (LocateNode(T, c.key) != nullptr)
             return ERROR;//有关键字重复
@@ -272,26 +271,18 @@ public:
 
     //func9：先序遍历
     //功能说明：对二叉树T进行先序遍历，Visit是一个函数指针的形参（可使用该函数对结点操作），对每个结点调用函数Visit访问一次且一次。
-    
-
-private:
-    void visit(BiTree T) {
-        cout << T->data.key << "," << T->data.info << " ";
-    }
-
-public:
-    status PreOrderTraverse(BiTree T, void (*visit)(BiTree)) {
+    status PreOrderTraverse(BiTree T) {
         if (T != nullptr) {
-            visit(T);
-            PreOrderTraverse(T->lchild, visit);
-            PreOrderTraverse(T->rchild, visit);
+            cout << T->data.key << "," << T->data.info << " ";
+            PreOrderTraverse(T->lchild);
+            PreOrderTraverse(T->rchild);
             return OK;
         } else return OK;
     }
 
     //func10:中序遍历
     //功能说明：对二叉树T进行中序遍历，Visit是一个函数指针的形参（可使用该函数对结点操作），对每个结点调用函数Visit访问一次且一次。
-    status InOrderTraverse(BiTree T, void (*visit)(BiTree)) {
+    status InOrderTraverse(BiTree T) {
         //中序非递归
         stack<BiTree> s;
         s.push(T);
@@ -304,7 +295,7 @@ public:
             s.pop();//空指针退栈
             if (!s.empty()) {//访问结点与其右子树
                 p = s.top();
-                visit(p);
+                cout << p->data.key << "," << p->data.info << " ";
                 s.pop();
                 s.push(p->rchild);
             }
@@ -314,24 +305,24 @@ public:
 
     //func11:后序遍历
     //功能说明：对二叉树T进行后序遍历，Visit是一个函数指针的形参（可使用该函数对结点操作），对每个结点调用函数Visit访问一次且一次。
-    status PostOrderTraverse(BiTree T, void (*visit)(BiTree)) {
+    status PostOrderTraverse(BiTree T) {
         if (T != nullptr) {
-            PostOrderTraverse(T->lchild, visit);
-            PostOrderTraverse(T->rchild, visit);
-            visit(T);
+            PostOrderTraverse(T->lchild);
+            PostOrderTraverse(T->rchild);
+            cout << T->data.key << "," << T->data.info << " ";
             return OK;
         } else return OK;
     }
 
     //func12：按层遍历
     //功能说明：对二叉树T进行按层遍历，Visit是一个函数指针的形参（可使用该函数对结点操作），对每个结点调用函数Visit访问一次且一次。
-    status LevelOrderTraverse(BiTree T, void (*visit)(BiTree)) {
+    status LevelOrderTraverse(BiTree T) {
         queue<BiTree> q;//创建队列容器
         if (T) q.push(T);
         while (!q.empty()) {
             BiTree p = q.front();
             q.pop();//:=Dequeue
-            visit(p);
+            cout << p->data.key << "," << p->data.info << " ";
             if (p->lchild)
                 q.push(p->lchild);//Inqueue
             if (p->rchild)
@@ -466,9 +457,11 @@ public:
             cin >> input.key >> input.info;
         }
         for (int i = 0; definition[i].key != -1; ++i) {
-            for (int j = i + 1; definition[j].key != -1; ++j) {
-                if (definition[i].key == definition[j].key)
-                    return ERROR;//有重复的标识符
+            if (definition[i].key!=0) {
+                for (int j = i + 1; definition[j].key != -1; ++j) {
+                    if (definition[i].key == definition[j].key)
+                        return ERROR;//有重复的标识符
+                }
             }
         }
         newTree.CreateBiTree(treeName,newTree.root,definition);

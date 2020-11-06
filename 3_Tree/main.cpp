@@ -37,7 +37,6 @@ int ManageSingleList(BinTreeStru &Bitree) {
              << "\t 6.  插入结点\n"
              << "\t 7.  删除结点\n"
              << "\t 8.  遍历二叉树\n"
-             << "\t 9.  销毁二叉树\n"
              << "\t 0.  返回上级菜单\n"
              << "-------------------------------------------------\n"
              << "请选择你的操作[0~12]:";
@@ -57,10 +56,7 @@ int ManageSingleList(BinTreeStru &Bitree) {
             case 1: {//二叉树清空
                 outcome = Bitree.ClearBiTree(Bitree.root);
                 if (outcome == OK)
-                    printf("成功，二叉树清空！\n");
-                cout << "键入任意键以继续" << endl;
-                getchar();
-                getchar();
+                    return 1;//清空后返回上级菜单
                 break;
             }//end of case 1：二叉树清空
 
@@ -114,156 +110,77 @@ int ManageSingleList(BinTreeStru &Bitree) {
                 break;
             }//end of case 4：结点赋值
 
-            case 5: {//求二叉树长度
-                int len;
-                outcome = Bitree.intListLength(len);
-                if (outcome == INFEASIBLE)
-                    cout << "不可行，二叉树不存在！" << endl;
-                else if (outcome == OK) {
-                    cout << "二叉树 \"" << listName << "\" 长度为 " << len << " ！" << endl;
+            case 5: {//获得兄弟结点
+                KeyType key;
+                cout<<"请输入要查找的结点关键字：";
+                cin>>key;
+                BinTreeStru::BiTree sibling=Bitree.GetSibling(Bitree.root,key);
+                if (sibling){
+                    cout<<"关键字为 "<<key<<" 的结点的兄弟结点为:"<<endl
+                    <<"关键字\t结点信息"<<endl
+                    <<sibling->data.key<<"\t"<<sibling->data.info<<endl;
+                } else{//nullptr
+                    cout<<"未找到关键字为 "<<key<<" 的结点"<<endl;
                 }
                 cout << "键入任意键以继续" << endl;
                 getchar();
                 getchar();
                 break;
-            }//end of case 5:求二叉树长度
+            }//end of case 5:获得兄弟结点
 
-            case 6: {//获取元素
-                ElemType e;
-                int i;
-                cout << "请输入要获取的元素序号：" << endl;
-                cin >> i;
-                outcome = Bitree.GetElem(i, e);
-                if (outcome == INFEASIBLE)
-                    cout << "不可行，二叉树不存在！" << endl;
-                else if (outcome == ERROR)
-                    cout << "错误，元素序号不合法！" << endl;
-                else {
-                    cout << "成功，第 " << i << " 个元素为：" << e << " !" << endl;
+            case 6: {//插入结点
+                cout<<"说明：e是和T中结点关键字类型相同的给定值，LR为0或1，c是待插入结点；根据LR为0或者1，插入结点c到T中，作为关键字为e的结点的左或右孩子结点，"
+                      "结点e的原有左子树或右子树则为结点c的右子树，返回OK。如果插入失败，返回ERROR。"<<endl
+                    <<"特别地，当LR为-1时，作为根结点插入，原根结点作为c的右子树"<<endl
+                    <<"请依次输入关键字、插入方式以及结点信息：";
+                KeyType key;
+                cin>>key;
+                int LR;
+                cin>>LR;
+                BinTreeStru::TElemType c;
+                cin>>c.key>>c.info;
+                status outcome=Bitree.InsertNode(Bitree.root,key,LR,c);
+                if (outcome==OK){
+                    cout<<"插入成功"<<endl;
+                } else{//ERROR
+                    cout<<"错误，插入的关键字重复或为找到该节点"<<endl;
                 }
                 cout << "键入任意键以继续" << endl;
                 getchar();
                 getchar();
                 break;
-            }//end of case 6：获取元素
+            }//end of case 6：插入结点
 
-            case 7: {//查找元素
-                int i = 0;
-                ElemType e;
-                cout << "请输入要查找的元素：" << endl;
-                cin >> e;
-                outcome = Bitree.LocateElem(e, i);
-                if (outcome == INFEASIBLE)
-                    cout << "不可行，二叉树为空！" << endl;
-                else if (outcome == ERROR)
-                    cout << "错误，未找到元素 " << e << " !" << endl;
-                else {
-                    cout << "成功，元素 " << e << " 的序号为 " << i << " !" << endl;
+            case 7: {//删除结点
+                cout<<"请输入要删除的结点的关键字：";
+                KeyType key;
+                cin>>key;
+                status outcome=Bitree.DeleteNode(Bitree.root,key);
+                if (outcome==OK){
+                    cout<<"删除成功"<<endl;
+                } else{//ERROR
+                    cout<<"错误，未找到关键字为 "<<key<<" 的结点"<<endl;
                 }
                 cout << "键入任意键以继续" << endl;
                 getchar();
                 getchar();
                 break;
-            }//end of case 7：查找元素
+            }//end of case 7：删除结点
 
-            case 8: {//获取前驱元素
-                ElemType e;
-                ElemType pre;
-                cout << "请输入一元素以获取其前驱:" << endl;
-                cin >> e;
-                outcome = Bitree.PriorElem(e, pre);
-                if (outcome == OK) {
-                    cout << "成功，元素 " << e << " 的前驱为 " << pre << " !" << endl;
-                } else if (outcome == INFEASIBLE) {
-                    cout << "不可行，二叉树不存在" << endl;
-                } else if (outcome == UNEXPECTED) {
-                    cout << "元素 " << e << " 为二叉树第一个元素，无前驱元素" << endl;
-                } else {
-                    cout << "错误，元素 " << e << " 不存在" << endl;
-                }
+            case 8: {//遍历二叉树
+                cout<<"先序遍历："<<endl;
+                Bitree.PreOrderTraverse(Bitree.root);
+                cout<<"中序遍历："<<endl;
+                Bitree.InOrderTraverse(Bitree.root);
+                cout<<"后序遍历："<<endl;
+                Bitree.PostOrderTraverse(Bitree.root);
+                cout<<"层序遍历："<<endl;
+                Bitree.LevelOrderTraverse(Bitree.root);
                 cout << "键入任意键以继续" << endl;
                 getchar();
                 getchar();
                 break;
-            }//end of case 8:获取前驱元素
-
-            case 9: {//获取后继元素
-                ElemType e;
-                ElemType next;
-                cout << "请输入一元素以获取其后继:" << endl;
-                cin >> e;
-                outcome = Bitree.NextElem(e, next);
-                if (outcome == OK) {
-                    cout << "成功，元素 " << e << " 的后继为" << next << endl;
-                } else if (outcome == INFEASIBLE) {
-                    cout << "不可行，二叉树不存在" << endl;
-                } else if (outcome == UNEXPECTED) {
-                    cout << "元素 " << e << " 为二叉树最后一个元素，无后继元素" << endl;
-                } else {
-                    cout << "错误，元素 " << e << " 不存在" << endl;
-                }
-                cout << "键入任意键以继续" << endl;
-                getchar();
-                getchar();
-                break;
-            }//end of case 9:获取后继元素
-
-            case 10: {//插入元素
-                int i = 0;
-                ElemType e;
-                cout << "请输入要插入的元素:";
-                cin >> e;
-                cout << "请输入要插入的位置:";
-                cin >> i;
-                outcome = Bitree.ListInsert(i, e);
-                if (outcome == OK) {
-                    cout << "成功,元素 " << e << " 已插入位置 " << i << " ！" << endl;
-                } else if (outcome == ERROR) {
-                    cout << "错误，位置 " << i << " 不合法！" << endl;
-                } else if (outcome == INFEASIBLE) {
-                    cout << "不可行，二叉树不存在！" << endl;
-                } else {//OVERFLOWED
-                    cout << "扩容失败！" << endl;
-                }
-                cout << "键入任意键以继续" << endl;
-                getchar();
-                getchar();
-                break;
-            }//end of case 10:插入元素
-
-            case 11: {//删除元素
-                int i = 0;
-                ElemType e;
-                cout << "请输入要删除的元素位置：";
-                cin >> i;
-                outcome = Bitree.ListDelete(i, e);
-                if (outcome == OK)
-                    cout << "成功， " << i << " 号位上的元素 " << e << " 已被删除！" << endl;
-                else if (outcome == ERROR)
-                    cout << "失败，位置 " << i << " 非法！" << endl;
-                else {//INFEASIBLE
-                    cout << "不可行，二叉树不存在！" << endl;
-                }
-                cout << "键入任意键以继续" << endl;
-                getchar();
-                getchar();
-                break;
-            }//end of case 11:删除元素
-
-            case 12: {//遍历二叉树
-                outcome = Bitree.ListTraverse(listName);
-                if (outcome == OK)
-                    cout << "二叉树遍历完成！" << endl;
-                else if (outcome == INFEASIBLE)
-                    cout << "不可行，二叉树不存在！" << endl;
-                else {//ERROR
-                    cout << "该二叉树是空表" << endl;
-                }
-                cout << "键入任意键以继续" << endl;
-                getchar();
-                getchar();
-                break;
-            }//end of 12:遍历二叉树
+            }//end of case 8:遍历二叉树
 
             case 0: {
                 return 0;//exit
