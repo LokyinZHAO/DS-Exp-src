@@ -1,8 +1,7 @@
 # DS-Exp-src
 the Data Structure source code
 
-数据结构实验课程的相关源代码
-相应实验报告参见：[LokyinZHAO/DS-Exp-report](https://github.com/LokyinZHAO/DS-Exp-report)
+数据结构实验课程的相应实验报告参见：[LokyinZHAO/DS-Exp-report](https://github.com/LokyinZHAO/DS-Exp-report)
 
 实现环境：    
 
