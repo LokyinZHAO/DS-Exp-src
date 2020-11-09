@@ -172,7 +172,7 @@ public:
     status ListInsert(int i,ElemType e){
         if (head== nullptr)//线性表不存在
             return INFEASIBLE;
-        LinkList p=head;//TODO：不明原因在读取文件这里head有时会BAD_ACCESS访问，目测是head没成功分配
+        LinkList p=head;
         if (i<1||i>head->data+1) return ERROR;//插入位置不合法
         for (int j = 1; j <= head->data+1; ++j) {
             if (j==i){
@@ -284,7 +284,7 @@ public:
         for (int j = 1; j <= i; ++j) {
             ptr=ptr->next;
         }
-        return ptr;//TODO:返回head不便于随机访问；最好由参数，表示第几个
+        return ptr;
     }
 
     int GetQuantity(){//返回个数
@@ -336,7 +336,7 @@ public:
         for (int i = 0; i < quantity; ++i) {
             if (ptr->linkStru.linkName==listName){//找到
                 pre_ptr->next=ptr->next;//ptr的前驱的next指向ptr的next
-                ptr->linkStru.DestroyList();//TODO:在内存查看name的string类到底需不需要释放
+                ptr->linkStru.DestroyList();//
                 free(ptr);
                 quantity--;
                 return OK;
@@ -345,18 +345,6 @@ public:
             pre_ptr=pre_ptr->next;
         }
         return ERROR;
-//        for (int i = 0; i < quantity; ++i) {
-//            if (listName==SqLists.elem[i].name){//找到
-//                SqLists.elem[i].name="/0";
-//                SqLists.elem[i].L.DestroyList();
-//                for (int j = i; j < quantity; ++j) {//之后的list前移
-//                    SqLists.elem[j]=SqLists.elem[j+1];
-//                }
-//                quantity--;
-//                return OK;
-//            }
-//        }
-//        return ERROR;//TODO：Delete
     }
 
 //      func4:查找线性表

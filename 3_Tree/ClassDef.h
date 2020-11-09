@@ -31,23 +31,30 @@ public:
 
     BinTreeStru() {//构造函数直接初始化
         root = (BiTree) malloc(sizeof(BiTNode));
+        root->lchild= nullptr;
+        root->rchild= nullptr;
     }
 
 
     //func1：创建一个二叉树
     //功能说明：根据带空子树的二叉树先序遍历序列definition构造二叉链表（要求二叉树T中各结点关键字具有唯一性）。根指针指向根结点，不需要在根结点之上再增加头结点。
+private:int creatorCount = 0;//definition下标
+public:
+    status BiTreeCreator(const string &treeName, BiTree &T, const vector<TElemType> &definition){//调用CreateBiTree，并处理definition下标
+        creatorCount=0;
+        return CreateBiTree(treeName,  T, definition);
+    }
     status CreateBiTree(const string &treeName, BiTree &T, const vector<TElemType> &definition) {
-        static int i = 0;//definition下标
-        if (i == 0) {//首先对二叉树名称赋值
+        if (creatorCount == 0) {//首先对二叉树名称赋值
             name = treeName;
         }
-        if (definition[i].key == 0) {
+        if (definition[creatorCount].key == 0) {
             T = nullptr;
-            i++;
+            creatorCount++;
             return OK;
         }
         T = (BiTree) malloc(sizeof(BiTNode));
-        T->data = definition[i++];
+        T->data = definition[creatorCount++];
         CreateBiTree(name, T->lchild, definition);
         CreateBiTree(name, T->rchild, definition);
         return OK;
@@ -374,7 +381,7 @@ public:
     //func14:读取二叉树
     //功能说明：将filePath中的txt文件读取，创建二叉树
     status LoadBiTree(string FileName) {
-        if (root) return INFEASIBLE;//二叉树已存在不能读写
+        if (root->rchild&&root->lchild) return INFEASIBLE;//二叉树已存在不能读写
         ifstream infile;
         infile.open(FileName);
         if (infile.fail()) {
@@ -456,6 +463,7 @@ public:
             definition.push_back(input);
             cin >> input.key >> input.info;
         }
+        definition.push_back(input);//将-1输入definition中
         for (int i = 0; definition[i].key != -1; ++i) {
             if (definition[i].key!=0) {
                 for (int j = i + 1; definition[j].key != -1; ++j) {
@@ -464,7 +472,7 @@ public:
                 }
             }
         }
-        newTree.CreateBiTree(treeName,newTree.root,definition);
+        newTree.BiTreeCreator(treeName,newTree.root,definition);
         forest.push_back(newTree);//将新建立的二叉树加到顺序遍末尾
         return OK;
     };
@@ -505,7 +513,7 @@ public:
         }
         outfile<<forest.size()<<endl;//首先写入元素个数
         for (int i = 0; i < forest.size(); ++i) {
-            outfile<<forest[i].name;
+            outfile<<forest[i].name<<endl;
             forest[i].SaveBiTree(forest[i].root,filepath);
         }
         outfile.close();
@@ -515,7 +523,7 @@ public:
     //func6:读取森林
     //功能说明：从filePath中读取森林数据
     status LoadForest(const string& filepath){
-        if (!forest.size())
+        if (forest.size())
             return INFEASIBLE;//森林中有数据，不可行
         ifstream infile;
         infile.open(filepath+"TreeName.txt",ios::in);
@@ -525,10 +533,9 @@ public:
         int quantity;
         infile>>quantity;
         for (int i = 0; i < quantity; ++i) {
-            string name;
-            infile>>name;
             BinTreeStru newTree;
-            newTree.LoadBiTree(filepath+name+".txt");
+            infile>>newTree.name;
+            newTree.LoadBiTree(filepath+newTree.name+".txt");
             forest.push_back(newTree);
         }
         infile.close();

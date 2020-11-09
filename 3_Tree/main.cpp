@@ -118,9 +118,14 @@ int ManageSingleList(BinTreeStru &Bitree) {
                 if (sibling){
                     cout<<"关键字为 "<<key<<" 的结点的兄弟结点为:"<<endl
                     <<"关键字\t结点信息"<<endl
-                    <<sibling->data.key<<"\t"<<sibling->data.info<<endl;
-                } else{//nullptr
-                    cout<<"未找到关键字为 "<<key<<" 的结点"<<endl;
+                    <<sibling->data.key<<"\t\t"<<sibling->data.info<<endl;
+                } else{//nullptr:有两种可能，未找到关键字或无兄弟
+                    if (Bitree.LocateNode(Bitree.root,key)){
+                        cout<<"未找到关键字为 "<<key<<" 的结点"<<endl;
+                    }else{
+                        cout<<"关键字为 "<<key<<" 的结点无兄弟"<<endl;
+                    }
+
                 }
                 cout << "键入任意键以继续" << endl;
                 getchar();
@@ -170,13 +175,13 @@ int ManageSingleList(BinTreeStru &Bitree) {
             case 8: {//遍历二叉树
                 cout<<"先序遍历："<<endl;
                 Bitree.PreOrderTraverse(Bitree.root);
-                cout<<"中序遍历："<<endl;
+                cout<<endl<<"中序遍历："<<endl;
                 Bitree.InOrderTraverse(Bitree.root);
-                cout<<"后序遍历："<<endl;
+                cout<<endl<<"后序遍历："<<endl;
                 Bitree.PostOrderTraverse(Bitree.root);
-                cout<<"层序遍历："<<endl;
+                cout<<endl<<"层序遍历："<<endl;
                 Bitree.LevelOrderTraverse(Bitree.root);
-                cout << "键入任意键以继续" << endl;
+                cout <<endl<< "键入任意键以继续" << endl;
                 getchar();
                 getchar();
                 break;
