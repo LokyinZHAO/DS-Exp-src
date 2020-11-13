@@ -117,13 +117,13 @@ int ManageSingleList(BinTreeStru &Bitree) {
                 BinTreeStru::BiTree sibling=Bitree.GetSibling(Bitree.root,key);
                 if (sibling){
                     cout<<"关键字为 "<<key<<" 的结点的兄弟结点为:"<<endl
-                    <<"关键字\t结点信息"<<endl
-                    <<sibling->data.key<<"\t\t"<<sibling->data.info<<endl;
+                    <<"关键字:"<<sibling->data.key<<endl
+                    <<"结点信息:"<<sibling->data.info<<endl;
                 } else{//nullptr:有两种可能，未找到关键字或无兄弟
                     if (Bitree.LocateNode(Bitree.root,key)){
-                        cout<<"未找到关键字为 "<<key<<" 的结点"<<endl;
-                    }else{
                         cout<<"关键字为 "<<key<<" 的结点无兄弟"<<endl;
+                    }else{
+                        cout<<"未找到关键字为 "<<key<<" 的结点"<<endl;
                     }
 
                 }
@@ -157,7 +157,9 @@ int ManageSingleList(BinTreeStru &Bitree) {
             }//end of case 6：插入结点
 
             case 7: {//删除结点
-                cout<<"请输入要删除的结点的关键字：";
+                cout<<"说明：删除T中关键字为e的结点；同时，如果关键字为e的结点度为0，删除即可；如关键字为e的结点度为1，用关键字为e的结点孩子代替被删除的e位置；如关键字为e的结点度为2，用e的左孩子代替被删除的e位置，e的右子树作为e的左子树中最右结点的右子树。"
+                <<endl
+                <<"请输入要删除的结点的关键字：";
                 KeyType key;
                 cin>>key;
                 status outcome=Bitree.DeleteNode(Bitree.root,key);
