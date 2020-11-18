@@ -44,13 +44,11 @@ public:
     status BiTreeCreator(const string &treeName, BiTree &T,
                          const vector<TElemType> &definition) {//调用CreateBiTree，并处理definition下标
         creatorCount = 0;
+        name = treeName;//首先对二叉树名称赋值
         return CreateBiTree(treeName, T, definition);
     }
 
     status CreateBiTree(const string &treeName, BiTree &T, const vector<TElemType> &definition) {
-        if (creatorCount == 0) {//首先对二叉树名称赋值
-            name = treeName;
-        }
         if (definition[creatorCount].key == 0) {
             T = nullptr;
             creatorCount++;
@@ -191,7 +189,9 @@ public:
             tree->lchild = nullptr;
             tree->rchild = T;
             tree->data = c;
-            T = tree;
+        }else{
+            cout<<"LR输入错误"<<endl;
+            return ERROR;
         }
         return OK;
         /********** End **********/
