@@ -45,6 +45,10 @@ public:
                          const vector<TElemType> &definition) {//调用CreateBiTree，并处理definition下标
         creatorCount = 0;
         name = treeName;//首先对二叉树名称赋值
+        if(definition[0].key==-1){//输入的是空树
+            T= nullptr;
+            return OK;
+        }
         return CreateBiTree(treeName, T, definition);
     }
 
