@@ -5,7 +5,7 @@
 		<Option title="1_SqStructure"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;CMake Files\1_SqStruc\;CMake Files\2_LinkStruc\;CMake Files\3_Tree\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\1_SqStruc\;CMake Files\2_LinkStruc\;CMake Files\3_Tree\;CMake Files\4_Graph\;"/>
 		<Build>
 			<Target title="all">
 				<Option working_dir="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug/1_SqStruc"/>
@@ -80,6 +80,9 @@
 		</Unit>
 		<Unit filename="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/3_Tree/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\3_Tree\"/>
+		</Unit>
+		<Unit filename="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/4_Graph/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\4_Graph\"/>
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>

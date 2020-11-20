@@ -5,7 +5,7 @@
 		<Option title="EXP_src"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;CMake Files\1_SqStruc\;CMake Files\2_LinkStruc\;CMake Files\3_Tree\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\1_SqStruc\;CMake Files\2_LinkStruc\;CMake Files\3_Tree\;CMake Files\4_Graph\;"/>
 		<Build>
 			<Target title="all">
 				<Option working_dir="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug"/>
@@ -163,6 +163,48 @@
 					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP\ src/cmake-build-debug/3_Tree/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
+			<Target title="4_Graph">
+				<Option output="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug/4_Graph/4_Graph" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug/4_Graph"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP\ src/cmake-build-debug/4_Graph/Makefile&quot;  VERBOSE=1 4_Graph"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP\ src/cmake-build-debug/4_Graph/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP\ src/cmake-build-debug/4_Graph/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP\ src/cmake-build-debug/4_Graph/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="4_Graph/fast">
+				<Option output="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug/4_Graph/4_Graph" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug/4_Graph"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP\ src/cmake-build-debug/4_Graph/Makefile&quot;  VERBOSE=1 4_Graph/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP\ src/cmake-build-debug/4_Graph/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP\ src/cmake-build-debug/4_Graph/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP\ src/cmake-build-debug/4_Graph/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
 		</Build>
 		<Unit filename="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/1_SqStruc/ClassDef.h">
 			<Option target="1_SqStruc"/>
@@ -191,6 +233,18 @@
 		<Unit filename="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/3_Tree/main.cpp">
 			<Option target="3_Tree"/>
 		</Unit>
+		<Unit filename="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/4_Graph/ClassDef.h">
+			<Option target="4_Graph"/>
+		</Unit>
+		<Unit filename="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/4_Graph/def.h">
+			<Option target="4_Graph"/>
+		</Unit>
+		<Unit filename="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/4_Graph/main.cpp">
+			<Option target="4_Graph"/>
+		</Unit>
+		<Unit filename="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/4_Graph/stu.h">
+			<Option target="4_Graph"/>
+		</Unit>
 		<Unit filename="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
@@ -202,6 +256,9 @@
 		</Unit>
 		<Unit filename="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/3_Tree/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\3_Tree\"/>
+		</Unit>
+		<Unit filename="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/4_Graph/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\4_Graph\"/>
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>

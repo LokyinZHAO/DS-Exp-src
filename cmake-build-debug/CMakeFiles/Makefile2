@@ -76,6 +76,7 @@ CMAKE_BINARY_DIR = "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-bui
 all: 1_SqStruc/all
 all: 2_LinkStruc/all
 all: 3_Tree/all
+all: 4_Graph/all
 
 .PHONY : all
 
@@ -83,6 +84,7 @@ all: 3_Tree/all
 preinstall: 1_SqStruc/preinstall
 preinstall: 2_LinkStruc/preinstall
 preinstall: 3_Tree/preinstall
+preinstall: 4_Graph/preinstall
 
 .PHONY : preinstall
 
@@ -90,6 +92,7 @@ preinstall: 3_Tree/preinstall
 clean: 1_SqStruc/clean
 clean: 2_LinkStruc/clean
 clean: 3_Tree/clean
+clean: 4_Graph/clean
 
 .PHONY : clean
 
@@ -146,6 +149,24 @@ clean: 3_Tree/clean
 3_Tree/clean: 3_Tree/CMakeFiles/3_Tree.dir/clean
 
 .PHONY : 3_Tree/clean
+
+#=============================================================================
+# Directory level rules for directory 4_Graph
+
+# Recursive "all" directory target.
+4_Graph/all: 4_Graph/CMakeFiles/4_Graph.dir/all
+
+.PHONY : 4_Graph/all
+
+# Recursive "preinstall" directory target.
+4_Graph/preinstall:
+
+.PHONY : 4_Graph/preinstall
+
+# Recursive "clean" directory target.
+4_Graph/clean: 4_Graph/CMakeFiles/4_Graph.dir/clean
+
+.PHONY : 4_Graph/clean
 
 #=============================================================================
 # Target rules for target 1_SqStruc/CMakeFiles/1_SqStruc.dir
@@ -227,6 +248,33 @@ clean: 3_Tree/clean
 3_Tree/CMakeFiles/3_Tree.dir/clean:
 	$(MAKE) $(MAKESILENT) -f 3_Tree/CMakeFiles/3_Tree.dir/build.make 3_Tree/CMakeFiles/3_Tree.dir/clean
 .PHONY : 3_Tree/CMakeFiles/3_Tree.dir/clean
+
+#=============================================================================
+# Target rules for target 4_Graph/CMakeFiles/4_Graph.dir
+
+# All Build rule for target.
+4_Graph/CMakeFiles/4_Graph.dir/all:
+	$(MAKE) $(MAKESILENT) -f 4_Graph/CMakeFiles/4_Graph.dir/build.make 4_Graph/CMakeFiles/4_Graph.dir/depend
+	$(MAKE) $(MAKESILENT) -f 4_Graph/CMakeFiles/4_Graph.dir/build.make 4_Graph/CMakeFiles/4_Graph.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug/CMakeFiles" --progress-num=7,8 "Built target 4_Graph"
+.PHONY : 4_Graph/CMakeFiles/4_Graph.dir/all
+
+# Build rule for subdir invocation for target.
+4_Graph/CMakeFiles/4_Graph.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug/CMakeFiles" 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 4_Graph/CMakeFiles/4_Graph.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/lokyin/OneDrive/MyEXP/DataStructure/EXP src/cmake-build-debug/CMakeFiles" 0
+.PHONY : 4_Graph/CMakeFiles/4_Graph.dir/rule
+
+# Convenience name for target.
+4_Graph: 4_Graph/CMakeFiles/4_Graph.dir/rule
+
+.PHONY : 4_Graph
+
+# clean rule for target.
+4_Graph/CMakeFiles/4_Graph.dir/clean:
+	$(MAKE) $(MAKESILENT) -f 4_Graph/CMakeFiles/4_Graph.dir/build.make 4_Graph/CMakeFiles/4_Graph.dir/clean
+.PHONY : 4_Graph/CMakeFiles/4_Graph.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

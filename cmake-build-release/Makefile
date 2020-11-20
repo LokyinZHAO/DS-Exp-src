@@ -169,6 +169,19 @@ depend:
 	$(MAKE) $(MAKESILENT) -f 3_Tree/CMakeFiles/3_Tree.dir/build.make 3_Tree/CMakeFiles/3_Tree.dir/build
 .PHONY : 3_Tree/fast
 
+#=============================================================================
+# Target rules for targets named 4_Graph
+
+# Build rule for target.
+4_Graph: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 4_Graph
+.PHONY : 4_Graph
+
+# fast build rule for target.
+4_Graph/fast:
+	$(MAKE) $(MAKESILENT) -f 4_Graph/CMakeFiles/4_Graph.dir/build.make 4_Graph/CMakeFiles/4_Graph.dir/build
+.PHONY : 4_Graph/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -180,6 +193,7 @@ help:
 	@echo "... 1_SqStruc"
 	@echo "... 2_LinkStruc"
 	@echo "... 3_Tree"
+	@echo "... 4_Graph"
 .PHONY : help
 
 
