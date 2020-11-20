@@ -7,6 +7,7 @@
 #include <queue>
 #include <vector>
 #include <fstream>
+#include <iostream>
 using namespace std;
 class Graph{//定义单个无向图的类
 public:
@@ -29,6 +30,7 @@ public:
     } ALGraph;
 
     ALGraph G;
+    string  name;
 
     //func1:创建无向图
     //功能说明：根据顶点序列V和关系对序列VR构造一个无向图G（要求无向图G中各顶点关键字具有唯一性）。
@@ -146,7 +148,7 @@ public:
     }
     //func6:获得下一邻接点
     //功能说明：v和w是G中两个顶点的位序，v对应G的一个顶点,w对应v的邻接顶点；操作结果是返回v的（相对于w）下一个邻接顶点的位序；如果w是最后一个邻接顶点，或v、w对应顶点不存在，则返回-1。
-    int NextAdjVex(KeyType v,KeyType w)
+    int NextAdjVex(KeyType v,KeyType w)const
     {
         int location=LocateVex(v);
         int w_location=LocateVex(w);
@@ -290,7 +292,7 @@ public:
     bool visited[MAX_VERTEX_NUM];
     void visit (VertexType v)const
     {
-        printf(" %d %s",v.key,v.others);
+        cout<<v.key<<v.info;
     }
     status DFSTraverse(void (*visit)(VertexType))
     {
@@ -344,7 +346,7 @@ public:
     }
     //func13:存储图
     //功能说明：函数SaveGraph实现将图G写到文件名为FileName的文件中，返回OK；
-    status SaveGraph(string FileName )
+    status SaveGraph(string FileName )const
 //将图的数据写入到文件FileName中
     {
         using namespace std;
@@ -360,7 +362,7 @@ public:
         //按照邻接表存储
         outfile<<G.vexnum<<G.arcnum<<endl;
         for (int i = 0; i < G.vexnum; ++i) {
-            outfile<<G.vertices[i].data.key<<" "<<G.vertices[i].data.others<<endl;
+            outfile<<G.vertices[i].data.key<<" "<<G.vertices[i].data.info<<endl;
             for (int w=FirstAdjVex(G.vertices[i].data.key);w>=0;w=NextAdjVex(G.vertices[i].data.key,G.vertices[w].data.key)) {
                 outfile<<w<<endl;
             }
@@ -381,7 +383,7 @@ public:
         infile>>G.vexnum>>G.arcnum;
         G.kind=UDG;
         for (int i = 0; i < G.vexnum; ++i) {
-            infile>>G.vertices[i].data.key>>G.vertices[i].data.others;
+            infile>>G.vertices[i].data.key>>G.vertices[i].data.info;
             int arc;
             infile>>arc;
             if (arc!=-1){
@@ -408,6 +410,112 @@ public:
 class GraphSet{//定义无向图集合的类
 public:
     vector<Graph> GSet;
+    //func1：初始化图集合
+    //功能说明：如果森林不存在，操作结果是构造一个空的二叉树顺序表集合，返回OK，否则返回INFEASIBLE
+    // （注意声明对象时已通过构造函数初始化）
+    status InitGraphSet() {
+        if (!GSet.empty()) {//已经存在图不可初始化
+            return INFEASIBLE;
+        }
+        return OK;//vector自动初始化
+    }
 
+    //func2:增加一个图
+    //功能说明：向Gset中新增加一个图
+    status AddGraph(const string &GName){
+        Graph newG;
+        VertexType V[MAX_VERTEX_NUM];
+        KeyType VR[100][2];
+        cout<<"请输入顶点信息,以 -1 -1 结束："<<endl;
+        VertexType V_in;
+        cin>>V_in.key>>V->info;//读入顶点数据
+        int i=0;
+        while (V_in.key!=-1){
+            V[i]=V_in;
+            i++;
+            cin>>V_in.key>>V->info;
+        }
+        cout<<"请输入边信息,以 -1 -1结束："<<endl;
+        i=0;
+        KeyType k_in[2];
+        cin>>k_in[0]>>k_in[1];
+        while (k_in[0]!=-1){
+            VR[i][0]=k_in[0];
+            VR[i][1]=k_in[1];
+            i++;
+            cin>>k_in[0]>>k_in[1];
+        }
+        newG.name=GName;
+        if (newG.CreateCraph(V,VR)==OK){
+            GSet.push_back(newG);
+            return OK;
+        } else
+            return ERROR;
+    }
+
+    //func3:移除一个图
+    //功能说明：在集合中查找名为GName的图，有则删除，返回OK，否则返回ERROR
+    status RemoveGraph(const string &treeName) {
+        for (auto iter = GSet.begin(); iter != GSet.end(); iter++) {//利用容器的迭代器
+            if (iter->name == treeName) {//找到
+                iter->DestroyGraph();//销毁
+                GSet.erase(iter);//删除
+                return OK;
+            }
+        }
+        return ERROR;//未找到
+    }
+    //func4:查找图
+    //功能说明：在集合中查找名为GName的图，有则返回位序，否则返回0
+    int LocateGraph(const string &GName)const{
+        for (int i = 0; i < GSet.size(); ++i) {
+            if (GName==GSet[i].name){//找到
+                return i+1;
+            }
+        }
+        return 0;//未找到
+    }
+    //func5：存储图集合
+    //功能说明：将图集合中的所有数据存储到指定位置，每个图以其名字单独成一个文件
+    status SaveGSet()const{
+        ofstream outfile;
+        string  filepath=FILE_PATH;
+        outfile.open(filepath + "TreeName.txt", ios::out | ios::trunc);
+        if (outfile.fail()) {//如果打开失败，可能文件夹不存在，创建
+            system("mkdir data");
+            outfile.open(filepath + "TreeName.txt", ios::out | ios::trunc);
+            if (outfile.fail())
+                return OVERFLOWED;//文件打开失败
+        }
+        outfile<<GSet.size()<<endl;//首先写入元素个数
+        for (int i = 0; i < GSet.size(); ++i) {
+            outfile<<GSet[i].name<<endl;
+            GSet[i].SaveGraph(filepath);
+        }
+        outfile.close();
+        return OK;
+    }
+    //func6:读取图集合
+    //功能说明：从指定路径中按照存储方式读取图集合
+    status LoadGSet(){
+        if (GSet.size())
+            return INFEASIBLE;//集合中已经有数据，不可行
+        ifstream infile;
+        string  filepath=FILE_PATH;
+        infile.open(filepath + "TreeName.txt", ios::in);
+        if (infile.fail()) {
+            return OVERFLOWED;
+        }
+        int quantity;
+        infile >> quantity;
+        for (int i = 0; i < quantity; ++i) {
+            Graph newG;
+            infile>>newG.name;
+            newG.LoadGraph(filepath + newG.name + ".txt");
+            GSet.push_back(newG);
+        }
+        infile.close();
+        return OK;
+    }
 };
 #endif //EXP_SRC_CLASSDEF_H

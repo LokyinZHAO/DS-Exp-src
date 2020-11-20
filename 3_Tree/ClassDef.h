@@ -484,7 +484,7 @@ public:
         forest.push_back(newTree);//将新建立的二叉树加到顺序遍末尾
         return OK;
     };
-
+    
     //func3:移除一个二叉树
     //功能说明：在二叉树集合中查找名为treeName的二叉树，有则删除，返回OK，否则返回ERROR
     status RemoveTree(const string &treeName) {
