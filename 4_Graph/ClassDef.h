@@ -193,7 +193,7 @@ public:
             while (p) {
                 int w=G.vertices[p->adjvex].data.key;
                 p=p->nextarc;
-                DeleteArc(G,v,w);//删除弧,free()
+                DeleteArc(v,w);//删除弧,free()
             }
         }//此时v顶点已经没有弧，删除v
         for (int i = 0; i < G.vexnum; ++i) {//对各个顶点进行修改，如果该顶点有弧与位序大于location的，位序--
@@ -214,7 +214,7 @@ public:
     }
     //func9:插入弧
     //功能说明：v、w是和G中顶点关键字类型相同的给定值；操作结果是在图G中增加弧<v,w>。成功赋值返回OK，否则返回ERROR。
-    status InsertArc(ALGraph &G,KeyType v,KeyType w)
+    status InsertArc(KeyType v,KeyType w)
     {
         int v_loc=LocateVex(v);
         int w_loc=LocateVex(w);
@@ -239,7 +239,7 @@ public:
     }
     //func10:删除弧
     //功能说明：v、w是和G中顶点关键字类型相同的给定值；操作结果是在图G中删除弧<v,w>。成功赋值返回OK，否则返回ERROR。
-    status DeleteArc(ALGraph &G,KeyType v,KeyType w)
+    status DeleteArc(KeyType v,KeyType w)
     {
         int v_loc=LocateVex(v);
         int w_loc=LocateVex(w);
@@ -294,7 +294,7 @@ public:
     {
         cout<<v.key<<v.info;
     }
-    status DFSTraverse(void (*visit)(VertexType))
+    status DFSTraverse()
     {
         // 请在这里补充代码，完成本关任务
         /********** Begin *********/
@@ -316,7 +316,7 @@ public:
     }
     //func12:广深度优先搜索遍历
     //功能说明：对图G进行广度优先搜索遍历，依次对图中的每一个顶点使用函数visit访问一次，且仅访问一次。
-    status BFSTraverse(void (*visit)(VertexType))
+    status BFSTraverse()
     {
 
         for (int i = 0; i < G.vexnum; ++i) {
