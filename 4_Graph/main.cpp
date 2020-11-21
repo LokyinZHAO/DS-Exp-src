@@ -172,7 +172,7 @@ int ManageSingleList(Graph &G) {
             }//end of case 7：删除顶点
 
             case 8:{//插入弧
-                cout<<"请输入要插入插入的弧的两个邻接点的关键字：";
+                cout<<"请输入要插入的弧的两个邻接点的关键字：";
                 KeyType v,w;
                 cin>>v>>w;
                 status outcome=G.InsertArc(v,w);
