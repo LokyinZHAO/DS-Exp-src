@@ -37,6 +37,7 @@ int ManageSingleList(Graph &G) {
              << "\t 8.  插入弧\n"
              << "\t 9.  删除弧\n"
              << "\t 10. 图遍历\n"
+             << "\t 11. 邻接表(DEBUG)\n"
              << "\t 0.  返回上级菜单\n"
              << "-------------------------------------------------\n"
              << "请选择你的操作[0~12]:";
@@ -213,6 +214,13 @@ int ManageSingleList(Graph &G) {
                 getchar();
                 break;
             }//end of case 10:遍历图
+
+            case 11:{//邻接表
+                G.AdjTabul();
+                getchar();
+                getchar();
+                break;
+            }
 
             case 0: {
                 return 0;//exit

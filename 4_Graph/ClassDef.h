@@ -34,8 +34,8 @@ public:
         GraphKind kind;        //图的类型
     } ALGraph;
 
-    ALGraph G;
-    string name;
+    ALGraph G;//图的邻接表
+    string name;//图名称
 
     //func1:创建无向图
     //功能说明：根据顶点序列V和关系对序列VR构造一个无向图G（要求无向图G中各顶点关键字具有唯一性）。
@@ -116,7 +116,7 @@ public:
             G.vexnum = 0;
             G.arcnum = 0;
         }
-
+        return OK;
     }
 
     //func3:查找顶点
@@ -421,11 +421,26 @@ public:
         infile.close();
         return OK;
     }
+
+    status  AdjTabul(){
+        for (int i = 0; i < G.vexnum; ++i) {
+            cout<<G.vertices[i].data.key<<" "<<G.vertices[i].data.info<<":";
+            if (G.vertices[i].firstarc){
+                cout<<" "<<G.vertices[i].firstarc->adjvex;
+                ArcNode *p=G.vertices[i].firstarc->nextarc;
+                while (p){
+                    cout<<" "<<p->adjvex;
+                    p=p->nextarc;
+                }
+            }
+            cout<<endl;
+        }
+    }
 };
 
 class GraphSet {//定义无向图集合的类
 public:
-    vector<Graph> GSet;
+    vector<Graph> GSet;//利用向量容器对多个图进行管理
 
     //func1：初始化图集合
     //功能说明：如果森林不存在，操作结果是构造一个空的二叉树顺序表集合，返回OK，否则返回INFEASIBLE
