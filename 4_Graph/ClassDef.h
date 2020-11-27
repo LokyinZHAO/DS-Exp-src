@@ -422,18 +422,18 @@ public:
         return OK;
     }
 
-    status  AdjTabul(){
+    status AdjTabul() {
         for (int i = 0; i < G.vexnum; ++i) {
-            cout<<G.vertices[i].data.key<<" "<<G.vertices[i].data.info<<":";
-            if (G.vertices[i].firstarc){
-                cout<<" "<<G.vertices[i].firstarc->adjvex;
-                ArcNode *p=G.vertices[i].firstarc->nextarc;
-                while (p){
-                    cout<<" "<<p->adjvex;
-                    p=p->nextarc;
+            cout << G.vertices[i].data.key << " " << G.vertices[i].data.info << ":";
+            if (G.vertices[i].firstarc) {
+                cout << " " << G.vertices[i].firstarc->adjvex;
+                ArcNode *p = G.vertices[i].firstarc->nextarc;
+                while (p) {
+                    cout << " " << p->adjvex;
+                    p = p->nextarc;
                 }
             }
-            cout<<endl;
+            cout << endl;
         }
     }
 };

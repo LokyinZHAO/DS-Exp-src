@@ -6,6 +6,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+
 using namespace std;
 
 bool IsdigitAll(string str)//用于判断输入是否全为数字
@@ -63,13 +64,13 @@ int ManageSingleList(Graph &G) {
 
             case 2: {//查找顶点
                 KeyType key;
-                cout<<"请输入查找顶点的关键字：";
-                cin>>key;
-                auto outcome= G.LocateVex(key);
-                if (outcome== -1){
-                    cout<<"未找到关键字为 "<<key<<" 的顶点"<<endl;
+                cout << "请输入查找顶点的关键字：";
+                cin >> key;
+                auto outcome = G.LocateVex(key);
+                if (outcome == -1) {
+                    cout << "未找到关键字为 " << key << " 的顶点" << endl;
                 } else {
-                    cout<<"关键字为 "<<key<<" 的顶点信息: "<<G.G.vertices[outcome].data.info<<endl;
+                    cout << "关键字为 " << key << " 的顶点信息: " << G.G.vertices[outcome].data.info << endl;
                 }
                 cout << "键入任意键以继续" << endl;
                 getchar();
@@ -80,17 +81,17 @@ int ManageSingleList(Graph &G) {
             case 3: {//顶点赋值
                 KeyType key;
                 VertexType value;
-                cout<<"请输入要进行赋值的顶点关键字:";
+                cout << "请输入要进行赋值的顶点关键字:";
                 cin >> key;
-                cout<<"请输入该节点的新关键字:";
-                cin>>value.key;
-                cout<<"请输入该节点的信息:";
-                cin>>value.info;
-                status outcome=G.PutVex( key, value);
-                if (outcome==OK) {
-                    cout<<"赋值成功"<<endl;
-                } else{
-                    cout<<"赋值失败，请检查关键字是否存在或新关键字是否重复"<<endl;
+                cout << "请输入该节点的新关键字:";
+                cin >> value.key;
+                cout << "请输入该节点的信息:";
+                cin >> value.info;
+                status outcome = G.PutVex(key, value);
+                if (outcome == OK) {
+                    cout << "赋值成功" << endl;
+                } else {
+                    cout << "赋值失败，请检查关键字是否存在或新关键字是否重复" << endl;
                 }
                 cout << "键入任意键以继续" << endl;
                 getchar();
@@ -100,18 +101,18 @@ int ManageSingleList(Graph &G) {
 
             case 4: {//获得第一邻接点
                 KeyType key;
-                cout<<"请输入要查找的顶点关键字：";
-                cin>>key;
-                int outcome=G.FirstAdjVex(key);
-                if (outcome!=-1){
-                    cout<<"关键字为 "<<key<<" 的顶点的第一邻接点为:"<<endl
-                        <<"关键字:"<<G.G.vertices[outcome].data.key<<endl
-                        <<"顶点信息:"<<G.G.vertices[outcome].data.info<<endl;
-                } else{//两种可能：关键字不存在，无第一邻接点
-                    if (G.LocateVex( key)!=-1){
-                        cout<<"关键字为 "<<key<<" 的顶点无第一邻接点"<<endl;
-                    }else{
-                        cout<<"未找到关键字为 "<<key<<" 的顶点"<<endl;
+                cout << "请输入要查找的顶点关键字：";
+                cin >> key;
+                int outcome = G.FirstAdjVex(key);
+                if (outcome != -1) {
+                    cout << "关键字为 " << key << " 的顶点的第一邻接点为:" << endl
+                         << "关键字:" << G.G.vertices[outcome].data.key << endl
+                         << "顶点信息:" << G.G.vertices[outcome].data.info << endl;
+                } else {//两种可能：关键字不存在，无第一邻接点
+                    if (G.LocateVex(key) != -1) {
+                        cout << "关键字为 " << key << " 的顶点无第一邻接点" << endl;
+                    } else {
+                        cout << "未找到关键字为 " << key << " 的顶点" << endl;
                     }
 
                 }
@@ -122,17 +123,17 @@ int ManageSingleList(Graph &G) {
             }//end of case 5:获得第一邻接点
 
             case 5: {//获得下一邻接点
-                cout<<"请依次输入关键字以及其一个邻接点：";
+                cout << "请依次输入关键字以及其一个邻接点：";
                 KeyType key;
-                cin>>key;
+                cin >> key;
                 KeyType u;
-                cin>>u;
-                int outcome=G.NextAdjVex(key, u);
-                if (outcome!=-1){
-                    cout<<"关键字为 "<<key<<" 的顶点关于关键字为 "<<u<<" 的结点的下一邻接点为"<<endl
-                    <<G.G.vertices[outcome].data.key<<"\t"<<G.G.vertices[outcome].data.info<<endl;
-                } else{//ERROR
-                    cout<<"错误，未找到该顶点或关键字为 "<<u<<" 的结点为最后一个邻接点"<<endl;
+                cin >> u;
+                int outcome = G.NextAdjVex(key, u);
+                if (outcome != -1) {
+                    cout << "关键字为 " << key << " 的顶点关于关键字为 " << u << " 的结点的下一邻接点为" << endl
+                         << G.G.vertices[outcome].data.key << "\t" << G.G.vertices[outcome].data.info << endl;
+                } else {//ERROR
+                    cout << "错误，未找到该顶点或关键字为 " << u << " 的结点为最后一个邻接点" << endl;
                 }
                 cout << "键入任意键以继续" << endl;
                 getchar();
@@ -140,15 +141,15 @@ int ManageSingleList(Graph &G) {
                 break;
             }//end of case 5：获得下一邻接点
 
-            case 6:{//插入顶点
-                cout<<"请输入要插入的顶点的关键字以及其信息:";
+            case 6: {//插入顶点
+                cout << "请输入要插入的顶点的关键字以及其信息:";
                 VertexType newV;
-                cin>>newV.key>>newV.info;
-                status outcome=G.InsertVex(newV);
-                if(outcome==OK){
-                    cout<<"插入成功"<<endl;
-                }else{
-                    cout<<"插入失败，请检查顶点数是否超过规定大小或关键字是否重复"<<endl;
+                cin >> newV.key >> newV.info;
+                status outcome = G.InsertVex(newV);
+                if (outcome == OK) {
+                    cout << "插入成功" << endl;
+                } else {
+                    cout << "插入失败，请检查顶点数是否超过规定大小或关键字是否重复" << endl;
                 }
                 cout << "键入任意键以继续" << endl;
                 getchar();
@@ -157,14 +158,14 @@ int ManageSingleList(Graph &G) {
             }//end of case 6：插入顶点
 
             case 7: {//删除顶点
-                cout<<"请输入要删除的顶点的关键字：";
+                cout << "请输入要删除的顶点的关键字：";
                 KeyType key;
-                cin>>key;
-                status outcome=G.DeleteVex(key);
-                if (outcome==OK){
-                    cout<<"删除成功"<<endl;
-                } else{//ERROR
-                    cout<<"错误，未找到关键字为 "<<key<<" 的顶点"<<endl;
+                cin >> key;
+                status outcome = G.DeleteVex(key);
+                if (outcome == OK) {
+                    cout << "删除成功" << endl;
+                } else {//ERROR
+                    cout << "错误，未找到关键字为 " << key << " 的顶点" << endl;
                 }
                 cout << "键入任意键以继续" << endl;
                 getchar();
@@ -172,15 +173,15 @@ int ManageSingleList(Graph &G) {
                 break;
             }//end of case 7：删除顶点
 
-            case 8:{//插入弧
-                cout<<"请输入要插入的弧的两个邻接点的关键字：";
-                KeyType v,w;
-                cin>>v>>w;
-                status outcome=G.InsertArc(v,w);
-                if(outcome==OK){
-                    cout<<"插入成功"<<endl;
-                }else{
-                    cout<<"错误，请检查结点是否存在或弧是否已存在"<<endl;
+            case 8: {//插入弧
+                cout << "请输入要插入的弧的两个邻接点的关键字：";
+                KeyType v, w;
+                cin >> v >> w;
+                status outcome = G.InsertArc(v, w);
+                if (outcome == OK) {
+                    cout << "插入成功" << endl;
+                } else {
+                    cout << "错误，请检查结点是否存在或弧是否已存在" << endl;
                 }
                 cout << "键入任意键以继续" << endl;
                 getchar();
@@ -189,14 +190,14 @@ int ManageSingleList(Graph &G) {
             }//end of case 8：插入弧
 
             case 9: {//删除弧
-                cout<<"请输入要删除的弧两个邻接点的关键字：";
-                KeyType v,w;
-                cin>>v>>w;
-                status outcome=G.DeleteArc(v,w);
-                if (outcome==OK){
-                    cout<<"删除成功"<<endl;
-                } else{//ERROR
-                    cout<<"错误，请检查输入是否正确"<<endl;
+                cout << "请输入要删除的弧两个邻接点的关键字：";
+                KeyType v, w;
+                cin >> v >> w;
+                status outcome = G.DeleteArc(v, w);
+                if (outcome == OK) {
+                    cout << "删除成功" << endl;
+                } else {//ERROR
+                    cout << "错误，请检查输入是否正确" << endl;
                 }
                 cout << "键入任意键以继续" << endl;
                 getchar();
@@ -205,17 +206,17 @@ int ManageSingleList(Graph &G) {
             }//end of case 9：删除弧
 
             case 10: {//遍历图
-                cout<<"深度优先搜索遍历："<<endl;
+                cout << "深度优先搜索遍历：" << endl;
                 G.DFSTraverse();
-                cout<<endl<<"广度优先搜索遍历："<<endl;
+                cout << endl << "广度优先搜索遍历：" << endl;
                 G.BFSTraverse();
-                cout <<endl<< "键入任意键以继续" << endl;
+                cout << endl << "键入任意键以继续" << endl;
                 getchar();
                 getchar();
                 break;
             }//end of case 10:遍历图
 
-            case 11:{//邻接表
+            case 11: {//邻接表
                 G.AdjTabul();
                 getchar();
                 getchar();
@@ -310,7 +311,7 @@ int main() {
                 string name;
                 cout << "请输入要移除的图名称：" << endl;
                 cin >> name;
-                status outcome=GraphS.RemoveGraph(name);
+                status outcome = GraphS.RemoveGraph(name);
                 if (outcome == OK)
                     cout << "成功，名为 " << name << " 的图被移除！" << endl;
                 else if (outcome == ERROR)
@@ -348,7 +349,7 @@ int main() {
                 break;
             }
             case 6: {//读取图集合
-                outcome =GraphS.LoadGSet();
+                outcome = GraphS.LoadGSet();
                 if (outcome == OK)
                     cout << "图集合数据读取成功！" << endl;
                 else if (outcome == INFEASIBLE)
